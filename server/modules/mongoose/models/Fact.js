@@ -16,6 +16,13 @@ const schema = new Schema({
     default: true
   }
 
+}, {
+
+  timestamps: {
+    createdAt: `created`,
+    updatedAt: `modified`
+  }
+
 });
 
 module.exports = {schema};
