@@ -1,14 +1,9 @@
 const path = require(`path`);
-const log = true;
+const pluginHandler = require(`./lib/pluginHandler`);
 
 require(`dotenv`).load({silent: true});
 
-const {
-  PORT = 3000,
-  URL = `http://localhost`,
-  MONGO_URL,
-  SECRET
-} = process.env;
+const {PORT: port} = process.env;
 
 const Server = require(`hapi`).Server;
 
@@ -22,59 +17,12 @@ const server = new Server({
   }
 });
 
-server.connection({port: PORT});
+server.connection({port});
+
+server.register(require(`./modules/`), pluginHandler);
+server.register(require(`./routes/`), pluginHandler);
 
 server.start(err => {
-
-  if (err) return console.error(err);
-
-  console.log(``);
-  console.log(`Server running at: ${URL}:${PORT}`);
-
-  server.register({
-
-    register: require(`hapi-devine-autoload`),
-
-    options: {
-
-      path: path.join(__dirname, `plugins`),
-      log,
-
-      plugins: [
-        `hapi-devine-mongodb`,
-        `hapi-devine-routes`,
-        `hapi-devine-auth`,
-        `inert`
-      ],
-
-      pluginOptions: {
-
-        'hapi-devine-mongodb': {
-          connectionString: MONGO_URL,
-          log,
-          path: path.join(__dirname, `schemas`)
-        },
-
-        'hapi-devine-routes': {
-          log,
-          path: path.join(__dirname, `routes`),
-          after: `hapi-devine-auth`
-        },
-
-        'hapi-devine-auth': {
-          log,
-          issuer: URL,
-          secret: SECRET,
-          authModel: () => require(`mongoose`).models.User,
-          after: `hapi-devine-mongodb`
-        }
-
-      }
-
-    }
-
-  }, error => {
-    if (error) return console.error(error);
-  });
-
+  if (err) console.error(err);
+  console.log(`Server running at: http://localhost:${port}`);
 });
