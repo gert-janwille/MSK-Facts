@@ -1,22 +1,30 @@
 const Schema = require(`mongoose`).Schema;
 
-
 const schema = new Schema({
 
-  skill: {
-    type: String,
-    required: true,
-    unique: true
-  },
-
-  type: {
+  name: {
     type: String,
     required: true
   },
 
-  level: {
+  artist: {
     type: String,
     required: true
+  },
+
+  description: {
+    type: String,
+    required: true
+  },
+
+  keywords: {
+    type: String,
+    required: true
+  },
+
+  isActive: {
+    type: Boolean,
+    default: true
   }
 
 });

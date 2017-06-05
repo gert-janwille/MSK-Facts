@@ -1,8 +1,5 @@
 const {User} = require(`mongoose`).models;
-
-const {pick, omit} = require(`lodash`);
-
-const Scopes = require(`../../modules/mongoose/const/Scopes`);
+const {pick, omit, isEmpty} = require(`lodash`);
 
 const Joi = require(`joi`);
 const Boom = require(`boom`);
@@ -12,57 +9,95 @@ const base = `/api`;
 module.exports = [
 
   {
+    method: `GET`,
+    path: `${base}/users/{_id?}`,
 
+    config: {
+
+      validate: {
+        params: {
+          _id: Joi.number().min(1),
+        }
+      }
+    },
+
+    handler: (req, res) => {
+      const {_id} = req.params;
+
+      if (_id) {
+
+        User.find({facebookId: _id})
+          .then(user => {
+            if (isEmpty(user)) return res(Boom.notFound());
+            return res(user);
+          })
+          .catch(() => res(Boom.badRequest()));
+
+      } else {
+        User.find()
+        .then(user => {
+          return res({user});
+        });
+      }
+    }
+  },
+
+  {
     method: `POST`,
     path: `${base}/users`,
 
     config: {
-
-
-      auth: {
-        strategy: `token`,
-        mode: `try` /* mode: optional, same as try, but fails on invalid token */
-      },
-
       validate: {
-
         options: {
           abortEarly: false
         },
-
         payload: {
-          username: Joi.string().alphanum().min(3).required(),
+          facebookId: Joi.number().min(1).required(),
+          name: Joi.string().required(),
           email: Joi.string().email().required(),
-          password: Joi.string().min(3).required(),
-          isActive: Joi.boolean(),
-          scope: Joi.string().min(3)
+          foundFacts: [Joi.string()],
+          scope: Joi.string(),
+          isActive: Joi.string()
         }
-
       }
-
     },
 
     handler: (req, res) => {
-
-      let fields = [`username`, `email`, `password`];
-
-      if (req.hasScope(Scopes.ADMIN)) {
-        fields = [...fields, `isActive`, `scope`];
-      }
-
-      const data = pick(req.payload, fields);
+      const data = pick(req.payload, [`facebookId`, `name`, `email`, `foundFacts`, `scope`, `isActive`]);
       const user = new User(data);
 
       user.save()
         .then(u => {
-          if (!u) return res(Boom.badRequest(`cannot save user`));
-          u = omit(u.toJSON(), [`__v`, `password`, `isActive`]);
+          u = omit(u.toJSON(), [`__v`]);
           return res(u);
         })
         .catch(() => res(Boom.badRequest(`cannot save user`)));
-
     }
+  },
 
+  {
+    method: `DELETE`,
+    path: `${base}/users/{_id}`,
+
+    config: {
+
+      validate: {
+        params: {
+          _id: Joi.string().min(1).required(),
+        }
+      }
+    },
+
+    handler: (req, res) => {
+      const {_id} = req.params;
+
+      User.findOneAndRemove({facebookId: _id})
+        .then(user => {
+          if (!user) return res(Boom.notFound());
+          return res({statuscode: 200});
+        })
+        .catch(() => res(Boom.badRequest()));
+    }
   }
 
 ];

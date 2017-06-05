@@ -4,22 +4,25 @@ const Scopes = require(`../const/Scopes`);
 
 const schema = new Schema({
 
-  username: {
-    type: String,
+  facebookId: {
+    type: Number,
     required: true,
     unique: true
   },
 
-  password: {
+  name: {
     type: String,
-    required: true,
-    bcrypt: true
+    required: true
   },
 
   email: {
     type: String,
     required: true,
     unique: true
+  },
+
+  foundFacts: {
+    type: [String]
   },
 
   scope: {
@@ -40,7 +43,5 @@ const schema = new Schema({
   }
 
 });
-
-schema.plugin(require(`mongoose-bcrypt`));
 
 module.exports = {schema};
