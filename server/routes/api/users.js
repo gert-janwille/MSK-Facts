@@ -57,7 +57,7 @@ module.exports = [
           email: Joi.string().email().required(),
           foundFacts: [Joi.string()],
           scope: Joi.string(),
-          isActive: Joi.string()
+          isActive: Joi.boolean()
         }
       }
     },

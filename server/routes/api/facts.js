@@ -13,28 +13,20 @@ module.exports = [
     path: `${base}/facts`,
 
     handler: (req, res) => {
-      let prepData = {};
+      const conditions = {};
       const q = pick(req.query, [`id`, `artwork`]);
 
-      if (!isEmpty(q)) {
+      //id;
+      if (!isEmpty(q.id)) conditions._id = q.id;
+      //artwork
+      if (!isEmpty(q.artwork)) conditions.artworkMatch = new RegExp(`^${q.artwork.replace(/-/g, ` `)}$`, `i`);
 
-        if (q.id && q.artwork) prepData = {_id: q.id, artworkMatch: q.artwork.replace(/ /g, `-`)};
-        if (q.id) prepData = {_id: q.id.toString()};
-        if (q.artwork) prepData = {artworkMatch: q.artwork.replace(/-/g, ` `)};
 
-        Fact.find(prepData)
-            .then(fact => {
-              if (isEmpty(fact)) return res(Boom.notFound());
-              return res(fact);
-            })
-            .catch(() => res(Boom.badRequest()));
-
-      } else {
-        Fact.find()
-          .then(facts => {
-            return res(facts);
-          });
-      }
+      Fact.find(isEmpty(conditions) ? `` : conditions)
+        .then(piece => {
+          if (isEmpty(piece)) return res(Boom.notFound());
+          return res(piece);
+        });
     }
   },
 
@@ -51,16 +43,16 @@ module.exports = [
         payload: {
           fact: Joi.string().min(1).required(),
           artworkMatch: Joi.string(),
-          isActive: Joi.string()
+          isActive: Joi.boolean()
         }
       }
     },
 
     handler: (req, res) => {
       const data = pick(req.payload, [`fact`, `artworkMatch`, `isActive`]);
-      const user = new Fact(data);
+      const fact = new Fact(data);
 
-      user.save()
+      fact.save()
         .then(u => {
           u = omit(u.toJSON(), [`__v`]);
           return res(u);

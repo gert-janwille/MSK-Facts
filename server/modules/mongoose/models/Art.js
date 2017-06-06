@@ -4,7 +4,8 @@ const schema = new Schema({
 
   name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
 
   artist: {
@@ -17,8 +18,12 @@ const schema = new Schema({
     required: true
   },
 
-  keywords: {
-    type: String,
+  factMatch: {
+    type: Number
+  },
+
+  tags: {
+    type: [String],
     required: true
   },
 
