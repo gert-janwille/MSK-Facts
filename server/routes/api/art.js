@@ -33,7 +33,7 @@ module.exports = [
           if (isEmpty(piece)) return res(Boom.notFound());
           return res(piece);
         });
-
+        
     }
   },
 

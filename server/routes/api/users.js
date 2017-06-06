@@ -98,6 +98,33 @@ module.exports = [
         })
         .catch(() => res(Boom.badRequest()));
     }
+  },
+
+
+  {
+    method: `PUT`,
+    path: `${base}/users/{_id}`,
+
+    config: {
+
+      validate: {
+        params: {
+          _id: Joi.string().min(1).required(),
+        }
+      }
+    },
+
+    handler: (req, res) => {
+      const {_id} = req.params;
+      const _fact = req.query.fact;
+
+      User.update({facebookId: _id}, {$push: {foundFacts: _fact}})
+        .then(user => {
+          if (!user) return res(Boom.notFound());
+          return res({statuscode: 200});
+        })
+        .catch(() => res(Boom.badRequest()));
+    }
   }
 
 ];
