@@ -19,9 +19,9 @@ module.exports = [
       //id;
       if (!isEmpty(q.id)) conditions._id = q.id;
       //name;
-      if (!isEmpty(q.name)) conditions.name = new RegExp(`^${q.name  }$`, `i`);
+      if (!isEmpty(q.name)) conditions.name = new RegExp(`^${q.name}$`, `i`);
       //artist;
-      if (!isEmpty(q.artist)) conditions.artist = new RegExp(`^${q.artist  }$`, `i`);
+      if (!isEmpty(q.artist)) conditions.artist = new RegExp(`^${q.artist}$`, `i`);
       //factMatch;
       if (!isEmpty(q.fact)) conditions.factMatch = q.fact;
       //Tags;
@@ -33,7 +33,7 @@ module.exports = [
           if (isEmpty(piece)) return res(Boom.notFound());
           return res(piece);
         });
-        
+
     }
   },
 

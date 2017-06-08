@@ -26,9 +26,8 @@ module.exports = [
 
       if (_id) {
 
-        User.find({facebookId: _id})
+        User.find({id: _id})
           .then(user => {
-            if (isEmpty(user)) return res(Boom.notFound());
             return res(user);
           })
           .catch(() => res(Boom.badRequest()));
@@ -36,7 +35,7 @@ module.exports = [
       } else {
         User.find()
         .then(user => {
-          return res({user});
+          return res(user);
         });
       }
     }
@@ -52,8 +51,9 @@ module.exports = [
           abortEarly: false
         },
         payload: {
-          facebookId: Joi.number().min(1).required(),
-          name: Joi.string().required(),
+          id: Joi.number().min(1).required(),
+          firstName: Joi.string().required(),
+          lastName: Joi.string().required(),
           email: Joi.string().email().required(),
           foundFacts: [Joi.string()],
           scope: Joi.string(),
@@ -63,7 +63,7 @@ module.exports = [
     },
 
     handler: (req, res) => {
-      const data = pick(req.payload, [`facebookId`, `name`, `email`, `foundFacts`, `scope`, `isActive`]);
+      const data = pick(req.payload, [`id`, `firstName`, `lastName`, `email`, `foundFacts`, `scope`, `isActive`]);
       const user = new User(data);
 
       user.save()
@@ -91,7 +91,7 @@ module.exports = [
     handler: (req, res) => {
       const {_id} = req.params;
 
-      User.findOneAndRemove({facebookId: _id})
+      User.findOneAndRemove({id: _id})
         .then(user => {
           if (!user) return res(Boom.notFound());
           return res({statuscode: 200});
@@ -118,7 +118,7 @@ module.exports = [
       const {_id} = req.params;
       const _fact = req.query.fact;
 
-      User.update({facebookId: _id}, {$push: {foundFacts: _fact}})
+      User.update({id: _id}, {$push: {foundFacts: _fact}})
         .then(user => {
           if (!user) return res(Boom.notFound());
           return res({statuscode: 200});

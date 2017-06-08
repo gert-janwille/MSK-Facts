@@ -1,5 +1,5 @@
 import React from 'react';
-import {string} from 'prop-types';
+import {string, func, object} from 'prop-types';
 
 import {inject, observer} from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
@@ -7,35 +7,42 @@ import DevTools from 'mobx-react-devtools';
 import {Route} from 'react-router-dom';
 import Home from './Home';
 
-const App = ({name}) => (
+const App = ({login, user}) => {
+  const handleClick = e => {
+    e.preventDefault();
+    login();
+  };
 
-  <section>
-
-    {process.env.NODE_ENV !== `production` ? <DevTools /> : null}
-
-    <header>
-      <h1>Hello, {name}</h1>
-    </header>
-
+  return (
     <section>
-      <Route
-        exact path='/'
-        component={Home}
-      />
+
+      {process.env.NODE_ENV !== `production` ? <DevTools /> : null}
+
+      <header>
+        <h1>Hello, {user.firstName} {user.lastName}</h1>
+        <button type='button' name='login' onClick={handleClick}>Login with Facebook</button>
+
+      </header>
+
+      <section>
+        <Route
+          exact path='/'
+          component={Home}
+        />
+      </section>
+
     </section>
-
-  </section>
-
-);
+  );
+};
 
 App.propTypes = {
-  name: string.isRequired
+  login: func.isRequired,
+  user: object.isRequired
 };
 
 export default inject(
-  ({store}) => ({
-    name: store.name
+  ({userStore}) => ({
+    login: userStore.login,
+    user: userStore.user
   })
-)(
-  observer(App)
-);
+)(observer(App));

@@ -57,7 +57,10 @@ module.exports = [
           u = omit(u.toJSON(), [`__v`]);
           return res(u);
         })
-        .catch(() => res(Boom.badRequest(`cannot save fact`)));
+        .catch(e => {
+          console.log(e);
+          res(e);
+        });
     }
   },
 

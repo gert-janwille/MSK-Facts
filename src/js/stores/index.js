@@ -1,5 +1,7 @@
-import store from './store';
+import factStore from './factStore';
+import userStore from './userStore';
 
 export default {
-  store
+  factStore,
+  userStore
 };

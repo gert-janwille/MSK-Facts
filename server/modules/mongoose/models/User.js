@@ -4,13 +4,18 @@ const Scopes = require(`../const/Scopes`);
 
 const schema = new Schema({
 
-  facebookId: {
+  id: {
     type: Number,
     required: true,
     unique: true
   },
 
-  name: {
+  firstName: {
+    type: String,
+    required: true
+  },
+
+  lastName: {
     type: String,
     required: true
   },
