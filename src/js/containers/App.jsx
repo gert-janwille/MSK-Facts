@@ -1,5 +1,5 @@
 import React from 'react';
-import {string, func, object} from 'prop-types';
+import {func, object} from 'prop-types';
 
 import {inject, observer} from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
