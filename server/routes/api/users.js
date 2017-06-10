@@ -1,5 +1,5 @@
 const {User} = require(`mongoose`).models;
-const {pick, omit, isEmpty} = require(`lodash`);
+const {pick, omit} = require(`lodash`);
 
 const Joi = require(`joi`);
 const Boom = require(`boom`);
@@ -117,14 +117,28 @@ module.exports = [
     handler: (req, res) => {
       const {_id} = req.params;
       const _fact = req.query.fact;
+      const _action = req.query.action;
 
-      User.update({id: _id}, {$push: {foundFacts: _fact}})
-        .then(user => {
-          if (!user) return res(Boom.notFound());
-          return res({statuscode: 200});
-        })
-        .catch(() => res(Boom.badRequest()));
+      if (_action === `add`) {
+        User.findOneAndUpdate({id: _id}, {$push: {foundFacts: [_fact]}}, {new: true})
+          .then(user => {
+            if (!user) return res(Boom.notFound());
+            return res(user);
+          })
+          .catch(() => res(Boom.badRequest()));
+      }
+
+      if (_action === `remove`) {
+        User.findOneAndUpdate({id: _id}, {$pull: {foundFacts: [_fact]}}, {new: true})
+          .then(user => {
+            if (!user) return res(Boom.notFound());
+            return res(user);
+          })
+          .catch(() => res(Boom.badRequest()));
+      }
+
+
+
     }
   }
-
 ];

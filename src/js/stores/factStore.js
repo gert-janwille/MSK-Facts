@@ -4,6 +4,7 @@ import Fact from '../models/Fact';
 import factsAPI from '../lib/api/facts';
 
 class Store {
+  @observable fact = {}
 
   @observable facts = []
   @observable shownFacts = []
@@ -11,7 +12,8 @@ class Store {
   init = () => {
     factsAPI.read()
       .then(facts => this._add(...facts))
-      .then(this.addLogin());
+      .then(this.addLogin())
+      .then(this.pickRandom);
   }
 
   constructor() {
@@ -32,7 +34,12 @@ class Store {
     this.facts.splice(rnumber, 1);
     this.shownFacts.push(randomPicked);
 
-    return randomPicked;
+    this.setfact(randomPicked);
+  }
+
+
+  @action setfact = fact => {
+    this.fact = fact;
   }
 
 

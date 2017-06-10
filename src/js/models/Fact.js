@@ -1,6 +1,6 @@
 import {observable, action} from 'mobx';
 
-export default class Tweet {
+export default class Fact {
   fact = ``
   created = ``
   modified = ``

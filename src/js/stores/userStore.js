@@ -11,12 +11,14 @@ class Store {
   @observable friends = []
   @observable fbid = ``
 
+  @observable savedFacts = []
+
   init = () => {
     FB ? FB.getLoginStatus(response => response.status === `connected` ? this.saveUser(response.authResponse) : console.log(`not logged in`)) : this.init();
   }
 
   constructor() {
-    this.init();
+    setTimeout(() => this.init(), 10);
   }
 
   @action login = () => {
@@ -29,9 +31,22 @@ class Store {
     usersAPI.read(userID)
       .then(user => {
         this.user = user[0];
-        this.setFbId(userID);
-        this.getFriends();
+
+        this.savedFacts = this.user.foundFacts;
       });
+    this.setFbId(userID);
+    this.getFriends(userID);
+  }
+
+  @action saveFact = (factId, ac) => {
+    if (!this.fbid) return;
+    if (!factId) return;
+
+    const contain = this.savedFacts.includes(factId);
+    if (contain && ac === `add`) return;
+
+    usersAPI.update(this.fbid, factId, ac)
+      .then(r => this.savedFacts = r.foundFacts);
   }
 
   @action setFbId = id => this.fbid = id;
@@ -55,14 +70,16 @@ class Store {
 
     usersAPI.create(res)
       .then(user => {
-        console.log(user);
         this.user = user;
         this.getFriends();
+        this.savedFacts = this.user.foundFacts;
       });
   }
 
-  getFriends = () => {
-    FB.api(`/${this.fbid}/friends`, response => {
+  getFriends = id => {
+    const d = id ? id : this.fbid;
+    FB.api(`/${d}/friends`, response => {
+      if (!response.data) return;
       response.data.forEach(f => this.friends.push(f));
     });
     return this.friends;

@@ -31,6 +31,15 @@ export default {
 
     return fetch(`${url}/${_id}`, {method});
 
+  },
+
+  update: (_id, fbid, action) => {
+
+    const method = `PUT`;
+
+    return fetch(`${url}/${_id}?fact=${fbid}&action=${action}`, {method})
+      .then(r => r.json());
+
   }
 
 };
