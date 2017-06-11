@@ -3,13 +3,28 @@
 body {
   font-family: Roboto;
   font-size: 1.6rem;
-  margin: 2rem;
 }
 
 header {
-  margin: 2rem 0;
+  background-color: #ed1c24;
+  height: 18rem;
+}
+
+.logo {
+  width: 10rem;
+  height: 4.3rem;
+  margin: 2.5rem;
 }
 
 h1 {
   font-size: 3rem;
+}
+
+.fact-title {
+  font-family: denmarkbold;
+}
+
+.fact-text {
+  width: 37.5rem;
+  font-family: 'denmark_regularregular';
 }

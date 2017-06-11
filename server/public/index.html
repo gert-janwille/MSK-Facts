@@ -1,4 +1,68 @@
-<!DOCTYPE html> <html lang=en> <head> <meta charset=UTF-8> <title>Hello, Msk-Facts</title> <meta name=viewport content="width=device-width,initial-scale=1"/> <script>WebFontConfig={google:{families:["Roboto"]}},function(e){var o=e.createElement("script"),t=e.scripts[0];o.async=!0,o.src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js",t.parentNode.insertBefore(o,t)}(document)</script> <link href="/css/style.css" rel="stylesheet"></head> <body> <script> window.fbAsyncInit = function() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <title>Hello, Msk-Facts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <script>
+
+  WebFontConfig = {
+    custom: {
+      families: ['denmark_regularregular', 'denmarkbold'],
+      urls: ['./assets/fonts/fonts.css']
+    }
+  };
+
+    (function(d) {
+      var wf = d.createElement('script'), s = d.scripts[0];
+      wf.async = true;
+      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js';
+      s.parentNode.insertBefore(wf, s);
+    })(document);
+
+  </script>
+
+<link href="/css/style.css" rel="stylesheet"></head>
+
+<body>
+
+  <header>
+    <img src="/assets/images/MSKGENT_LOGO_01.png" alt="MSK logo" class="logo">
+  </header>
+
+  <section class="fact-container">
+    <h1 class="fact-title">Wist je dat...</h1>
+    <p class="fact-text">
+      Een beeld in het MSK ooit is gevallen en terug aan elkaar geplakt werd en dat dit helemaal niet meer zichtbaar is?
+    </p>
+    <div class="social">
+      <div class="like">
+        Like
+      </div>
+      <div class="share">
+        Delen
+      </div>
+    </div>
+    <a href="#" class="main-button">Nog een weetje</a>
+    <a href="#" class="main-button">Favoriete weetjes</a>
+  </section>
+
+  <section class="visit">
+    <h1>Meer weetjes?</h1>
+    <h2>Bezoek het MSK.</h2>
+    <p>Maak een eigen gepersonaliseerde rondleiding met jouw favoriete weetjes of kom gewoon langs!</p>
+    <a href="#" class="main-button">Stel een rondleiding samen</a>
+    <a href="#" class="main-button">Koop tickets</a>
+  </section>
+
+  <a href="#" class="notifications">notifications</a>
+
+
+
+  <script>
+      window.fbAsyncInit = function() {
         FB.init({
           appId      : `1906619232953238`,
           cookie     : true,
@@ -14,4 +78,14 @@
          js = d.createElement(s); js.id = id;
          js.src = "//connect.facebook.net/en_US/sdk.js";
          fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk')); </script> <div class=react-mount> </div> <script type="text/javascript" src="/js/main.58ee1da9d704a4e6310b.js"></script></body> </html> 
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
+  <div class='react-mount'>
+
+  </div>
+
+<script type="text/javascript" src="/js/main.cdf854f0176148dab1ee.js"></script></body>
+
+</html>
