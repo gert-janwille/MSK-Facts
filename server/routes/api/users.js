@@ -1,4 +1,4 @@
-const {User} = require(`mongoose`).models;
+const {UserFB} = require(`mongoose`).models;
 const {pick, omit} = require(`lodash`);
 
 const Joi = require(`joi`);
@@ -26,14 +26,14 @@ module.exports = [
 
       if (_id) {
 
-        User.find({id: _id})
+        UserFB.find({id: _id})
           .then(user => {
             return res(user);
           })
           .catch(() => res(Boom.badRequest()));
 
       } else {
-        User.find()
+        UserFB.find()
         .then(user => {
           return res(user);
         });
@@ -64,14 +64,17 @@ module.exports = [
 
     handler: (req, res) => {
       const data = pick(req.payload, [`id`, `firstName`, `lastName`, `email`, `foundFacts`, `scope`, `isActive`]);
-      const user = new User(data);
+      const user = new UserFB(data);
 
       user.save()
         .then(u => {
           u = omit(u.toJSON(), [`__v`]);
           return res(u);
         })
-        .catch(() => res(Boom.badRequest(`cannot save user`)));
+        .catch(er => {
+          console.log(er);
+          res(Boom.badRequest(`cannot save user`));
+        });
     }
   },
 
@@ -91,7 +94,7 @@ module.exports = [
     handler: (req, res) => {
       const {_id} = req.params;
 
-      User.findOneAndRemove({id: _id})
+      UserFB.findOneAndRemove({id: _id})
         .then(user => {
           if (!user) return res(Boom.notFound());
           return res({statuscode: 200});
@@ -120,7 +123,7 @@ module.exports = [
       const _action = req.query.action;
 
       if (_action === `add`) {
-        User.findOneAndUpdate({id: _id}, {$push: {foundFacts: [_fact]}}, {new: true})
+        UserFB.findOneAndUpdate({id: _id}, {$push: {foundFacts: [_fact]}}, {new: true})
           .then(user => {
             if (!user) return res(Boom.notFound());
             return res(user);
@@ -129,7 +132,7 @@ module.exports = [
       }
 
       if (_action === `remove`) {
-        User.findOneAndUpdate({id: _id}, {$pull: {foundFacts: [_fact]}}, {new: true})
+        UserFB.findOneAndUpdate({id: _id}, {$pull: {foundFacts: [_fact]}}, {new: true})
           .then(user => {
             if (!user) return res(Boom.notFound());
             return res(user);
