@@ -14,11 +14,11 @@ class Store {
   @observable savedFacts = []
 
   init = () => {
-    FB ? FB.getLoginStatus(response => response.status === `connected` ? this.saveUser(response.authResponse) : console.log(`not logged in`)) : this.init();
+    FB ? FB.getLoginStatus(response => response.status === `connected` ? this.saveUser(response.authResponse) : console.log(`not logged in`)) : setTimeout(() => this.init(), 500);
   }
 
   constructor() {
-    setTimeout(() => this.init(), 10);
+    this.init();
   }
 
   @action login = () => {

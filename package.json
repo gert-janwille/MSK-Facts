@@ -29,7 +29,8 @@
     "joi": "^10.1.0",
     "joi-objectid": "^2.0.0",
     "lodash": "^4.17.4",
-    "mongoose-bcrypt": "^1.4.2"
+    "mongoose-bcrypt": "^1.4.2",
+    "qrcode-reader": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",

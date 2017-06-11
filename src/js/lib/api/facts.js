@@ -4,7 +4,7 @@ import fetch from 'isomorphic-fetch';
 export default {
 
   read: _id => {
-    const selectOne = _id ? `/${_id}` : ``;
+    const selectOne = _id ? `?id=${_id}` : ``;
     return fetch(`${url}${selectOne}`)
       .then(r => r.json());
 
