@@ -10,7 +10,7 @@
 
   WebFontConfig = {
     custom: {
-      families: ['denmark_regularregular', 'denmarkbold'],
+      families: ['denmark_regularregular', 'denmarkbold', 'brandon_grotesquebold'],
       urls: ['./assets/fonts/fonts.css']
     }
   };
@@ -32,33 +32,110 @@
     <img src="assets/images/MSKGENT_LOGO_01.png" alt="MSK logo" class="logo">
   </header>
 
-  <section class="fact-container">
-    <h1 class="fact-title">Wist je dat...</h1>
-    <p class="fact-text">
-      Een beeld in het MSK ooit is gevallen en terug aan elkaar geplakt werd en dat dit helemaal niet meer zichtbaar is?
-    </p>
-    <div class="social">
-      <div class="like">
-        Like
+  <main>
+
+    <!-- ++++++++++++++ FACT PAGE ++++++++++++++ -->
+
+    <section class="fact-page page">
+
+      <section class="fact-container">
+        <h1 class="fact-title">Wist je dat...</h1>
+        <p class="fact-text">
+          Een beeld in het MSK ooit gevallen is en terug aan elkaar geplakt werd, maar dat dit helemaal niet meer zichtbaar is?
+        </p>
+        <div class="social">
+          <div class="like">
+            <span class="hidden">Like</span>
+          </div>
+          <div class="share">
+            <span class="share-text">Delen</span>
+          </div>
+        </div>
+        <a href="#" class="main-button">Nog een weetje</a>
+        <a href="#" class="main-button">Favoriete weetjes</a>
+      </section>
+
+      <section class="visit-container">
+        <h1 class="visit-title">Meer weetjes?</h1>
+        <h1 class="visit-title">Bezoek het MSK.</h1>
+        <p class="visit-text">Maak een eigen gepersonaliseerde rondleiding met jouw favoriete weetjes of kom gewoon langs!</p>
+        <a href="#" class="main-button">Stel rondleiding samen</a>
+        <a href="#" class="main-button">Koop tickets</a>
+      </section>
+
+    </section>
+
+
+
+    <!-- ++++++++++++++ FAVORITES PAGE ++++++++++++++ -->
+
+    <!-- <section class="favorites-page page">
+
+      <div class="back">
+        <a href="#" class="back-button"><span class="hidden">back</span></a>
       </div>
-      <div class="share">
-        Delen
-      </div>
-    </div>
-    <a href="#" class="main-button">Nog een weetje</a>
-    <a href="#" class="main-button">Favoriete weetjes</a>
-  </section>
 
-  <section class="visit">
-    <h1>Meer weetjes?</h1>
-    <h2>Bezoek het MSK.</h2>
-    <p>Maak een eigen gepersonaliseerde rondleiding met jouw favoriete weetjes of kom gewoon langs!</p>
-    <a href="#" class="main-button">Stel een rondleiding samen</a>
-    <a href="#" class="main-button">Koop tickets</a>
-  </section>
+      <p class="main-paragraf">Je hebt al enkele weetjes opgeslagen, wil je al een rondleiding samenstellen?</p>
 
-  <a href="#" class="notifications">notifications</a>
+      <a href="#" class="main-button">Stel rondleiding samen</a>
 
+      <section class="favorites-container">
+
+        <div class="favorite-container">
+          <img src="assets/images/illustraties/illu01.png" alt="" class="favorite-image">
+          <h1 class="favorite-title">Wist je dat?</h1>
+          <p class="favorite-text">
+            Een beeld in het MSK ooit gevallen is en terug aan elkaar geplakt werd, maar dit helemaal niet meer zichtbaar is?
+          </p>
+          <div class="social">
+            <div class="like">
+              <span class="hidden">Like</span>
+            </div>
+            <div class="share">
+              <span class="share-text">Delen</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="favorite-container">
+          <img src="assets/images/illustraties/illu02.png" alt="" class="favorite-image">
+          <h1 class="favorite-title">Wist je dat?</h1>
+          <p class="favorite-text">
+            Een beeld in het MSK ooit gevallen is en terug aan elkaar geplakt werd, maar dit helemaal niet meer zichtbaar is?
+          </p>
+          <div class="social">
+            <div class="like">
+              <span class="hidden">Like</span>
+            </div>
+            <div class="share">
+              <span class="share-text">Delen</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </section> -->
+
+
+
+    <!-- ++++++++++++++ START RONDLEIDING PROCCESS ++++++++++++++ -->
+
+    <section class="tour-container">
+      <section class="start-tour tour-screen">
+        <p class="main-paragraf">Stel je eigen rondleiding samen met jouw opgeslagen weetjes.</p>
+        <a href="" class="main-button">Eigen rondleiding</a>
+        <a href="" class="main-button">Met vrienden</a>
+        <a href="" class="main-button">Verras mij!</a>
+      </section>
+    </section>
+
+  </main>
+
+  <div class="notifications">
+    <div class="notifications-amount">1</div>
+    <a href="#" class="notifications-bel"><span class="hidden">Notifications</span></a>
+  </div>
 
 
   <script>

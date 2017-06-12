@@ -42,7 +42,7 @@ const App = ({login, user, pickRandom, saveFact, fact, savedFacts}) => {
       {process.env.NODE_ENV !== `production` ? <DevTools /> : null}
 
       <header>
-        <h1>Hello, {user.firstName} {user.lastName}</h1>
+        <h1>Hello, {user ? user.firstName : ``} {user ? user.lastName : ``}</h1>
         <button type='button' name='login' onClick={handleClick}>Login with Facebook</button>
         <br /><br />
 
