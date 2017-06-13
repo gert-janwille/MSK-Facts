@@ -138,6 +138,7 @@ h1 {
   background-size: 35%;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: white;
 }
 
 .notifications-amount {
@@ -256,9 +257,10 @@ header {
 
 .fact-title {
   font-size: 3.5em;
-  position: absolute;
-  top: 192px;
-  top: 12rem;
+  margin-top: -128px;
+  margin-top: -8rem;
+  margin-bottom: 96px;
+  margin-bottom: 6rem;
   color: white;
 }
 
@@ -319,6 +321,7 @@ header {
   background-size: 35%;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: white;
 }
 
 .favorites-container {
@@ -445,11 +448,23 @@ header {
 
   body {
     font-size: 1.4em;
+    background-size: 75%;
+    background-position: -5% 103%;
   }
+
+  .main-button {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+
+  /* HEADER */
 
   header {
     background: #ed1c24;
   }
+
+  /* FACT-PAGE */
 
   .fact-page {
     -webkit-box-align: center;
@@ -468,6 +483,8 @@ header {
     display: none;
   }
 
+  /* POPUP SCREEN */
+
   .popup-screen {
     background-size: 80%;
   }
@@ -477,7 +494,10 @@ header {
 
   body {
     font-size: 1.1em;
+    background-size: 90%;
+    background-position: -5% 101%;
   }
+
 
   .main-paragraf {
     margin-bottom: 2rem;
@@ -488,25 +508,7 @@ header {
     height: 4rem;
   }
 
-  /*header {
-    height: 18rem;
-
-    background: url(../assets/images/illustraties/illu05.png), var(--red);
-    background-blend-mode: multiply;
-    background-repeat: no-repeat;
-    background-size: 35rem;
-    background-position: 101% 0%;
-  }
-
-  .logo {
-    width: 10rem;
-    height: 6.8rem;
-    margin-left: 2.5rem;
-    background-image: url(../assets/images/MSKGENT_LOGO_01.png);
-    background-size: contain;
-    background-position: bottom;
-    background-repeat: no-repeat;
-  }*/
+  /* NOTIFICATIONS */
 
   .notifications-amount {
     width: 1.8rem;
@@ -516,6 +518,8 @@ header {
     left: 2.75rem;
     top: 1.25rem;
   }
+
+  /* SOCIAL */
 
   .like {
     height: 2rem;
@@ -528,9 +532,43 @@ header {
     margin-left: 2rem;
   }
 
+  /* FACT-PAGE */
+
   .fact-text {
     width: 70vw;
   }
+
+  /* FAVORITE_PAGE */
+
+  .mobile {
+    height: 7.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center
+  }
+
+  .mobile .logo{
+    width: 5rem;
+    height: 4.5rem;
+    margin-right: 2.5rem;
+    background-image: url(/assets/images/MSKGENT_LOGO_03.png);
+  }
+
+  .back {
+    top: 1.75rem;
+  }
+
+  .favorite-text {
+    font-size: 1em;
+  }
+
+  /* POPUP SCREEN */
 
   .close-popup-screen {
     margin-bottom: -2rem;

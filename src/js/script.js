@@ -11,21 +11,34 @@
 //
 // import stores from './stores';
 
-const onScroll = () => {
-  const $back = document.querySelector(`.back`);
+// const $back = document.querySelector(`.back`);
 
-  if (scrollY > 180) {
-    $back.style.position = `fixed`;
-    $back.style.top = `3rem`;
-  } else {
-    $back.style.position = `absolute`;
-    $back.style.top = `21rem`;
-  }
-};
+// const onScroll = () => {
+//
+//   if (scrollY > 180) {
+//     $back.style.position = `fixed`;
+//     $back.style.top = `3rem`;
+//   } else {
+//     $back.style.position = `absolute`;
+//     $back.style.top = `21rem`;
+//   }
+// };
+//
+// const triggerOnScroll = () => {
+//   if (window.innerWidth > 575) {
+//     window.addEventListener(`scroll`, onScroll);
+//   } else {
+//     $back.style.position = `fixed`;
+//     $back.style.top = `1.75rem`;
+//   }
+// };
 
 const init = () => {
-
-  window.addEventListener(`scroll`, onScroll);
+  //
+  // window.addEventListener(`resize`, triggerOnScroll);
+  // if (window.innerWidth > 575) {
+  //   window.addEventListener(`scroll`, onScroll);
+  // }
 
   // render(
   //   <Provider {...stores}>
