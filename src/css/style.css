@@ -10,7 +10,7 @@
 
 body {
   font-family: 'Trebuchet MS', Helvetica, sans-serif;
-  font-size: 1.6rem;
+  font-size: 1.6em;
   line-height: 1.5em;
   height: 100vh;
   background-image: url(../assets/images/illustraties/illu06.png);
@@ -33,6 +33,12 @@ body {
   text-decoration: none;
   color: white;
   font-family: 'brandon_grotesquebold';
+}
+
+.round-button {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 100%;
 }
 
 .page {
@@ -61,9 +67,6 @@ h1 {
 
 .notifications-bel {
   display: block;
-  width: 5rem;
-  height: 5rem;
-  border-radius: 100%;
   box-shadow: 0 0 1rem #888;
   background-image: url(../assets/images/notifications.svg);
   background-size: 35%;
@@ -102,8 +105,12 @@ header {
 
 .logo {
   width: 10rem;
-  height: 4.3rem;
-  margin: 2.5rem;
+  height: 6.8rem;
+  margin-left: 2.5rem;
+  background-image: url(../assets/images/MSKGENT_LOGO_01.png);
+  background-size: contain;
+  background-position: bottom;
+  background-repeat: no-repeat;
 }
 
 /* SOCIAL */
@@ -191,9 +198,6 @@ header {
 
 .back-button {
   display: block;
-  width: 5rem;
-  height: 5rem;
-  border-radius: 100%;
   box-shadow: 0 0 1rem #888;
   background-image: url(../assets/images/back-arrow.svg);
   background-size: 35%;
@@ -236,9 +240,9 @@ header {
   margin-bottom: -2rem;
 }
 
-/* TOUR PROCESS */
+/* POPUP SCREEN */
 
-.tour-container {
+.popup-container {
   background-color: rgba(255, 255, 255, .8);
   width: 100%;
   height: 100%;
@@ -246,11 +250,24 @@ header {
   top: 0;
   left: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.tour-screen {
+.close-popup-screen {
+  box-shadow: 0 0 1rem var(--red);
+  background-image: url(../assets/images/close-icon.svg);
+  background-size: 25%;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-right: -70%;
+  margin-bottom: -2.5rem;
+  background-color: var(--red);
+}
+
+.popup-screen {
   background-color: white;
   background-image: url(../assets/images/illustraties/illu06.png);
   background-repeat: no-repeat;
@@ -267,3 +284,116 @@ header {
 }
 
 /* BREAKPOINTS */
+
+@media only screen and (max-width: 900px) {
+
+  body {
+    font-size: 1.4em;
+  }
+
+  /* HEADER */
+
+  header {
+    background: var(--red);
+  }
+
+  /* FACT-PAGE */
+
+  .fact-page {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fact-text {
+    width: 60vw;
+  }
+
+  .visit-container {
+    display: none;
+  }
+
+  /* POPUP SCREEN */
+
+  .popup-screen {
+    background-size: 80%;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+
+  body {
+    font-size: 1.1em;
+  }
+
+  .main-paragraf {
+    margin-bottom: 2rem;
+  }
+
+  .round-button {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  /* HEADER */
+
+  /*header {
+    height: 18rem;
+
+    background: url(../assets/images/illustraties/illu05.png), var(--red);
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-size: 35rem;
+    background-position: 101% 0%;
+  }
+
+  .logo {
+    width: 10rem;
+    height: 6.8rem;
+    margin-left: 2.5rem;
+    background-image: url(../assets/images/MSKGENT_LOGO_01.png);
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+  }*/
+
+  /* NOTIFICATIONS */
+
+  .notifications-amount {
+    width: 1.8rem;
+    height: 1.8rem;
+    font-size: .6em;
+
+    left: 2.75rem;
+    top: 1.25rem;
+  }
+
+  /* SOCIAL */
+
+  .like {
+    height: 2rem;
+    width: 4rem;
+  }
+
+  .share {
+    height: 2rem;
+    width: 7rem;
+    margin-left: 2rem;
+  }
+
+  /* FACT-PAGE */
+
+  .fact-text {
+    width: 70vw;
+  }
+
+  /* POPUP SCREEN */
+
+  .close-popup-screen {
+    margin-bottom: -2rem;
+  }
+
+  .popup-screen {
+    background-size: 90%;
+    background-position: -10% 105%;
+  }
+}
