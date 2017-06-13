@@ -32,7 +32,7 @@ const App = ({login, user, pickRandom, saveFact, fact, savedFacts}) => {
     if (!savedFacts) return;
 
     return savedFacts.map(i => {
-      return <li key={user._id + Math.random(3)}>{i}</li>;
+      return <li key={user._id + Math.random(3)}>{i.fact}</li>;
     });
   };
 
@@ -50,18 +50,15 @@ const App = ({login, user, pickRandom, saveFact, fact, savedFacts}) => {
         <button type='button' name='next' onClick={handleClickFact}>Next</button>
         <button type='button' name='next' onClick={handleClickDelete}>Delete</button>
 
-        <ul>
+        <ol>
           {tryf()}
-        </ul>
+        </ol>
 
 
       </header>
 
       <section>
-        <Route
-          exact path='/'
-          component={Home}
-        />
+        <Route exact path='/' component={Home} />
       </section>
 
     </section>

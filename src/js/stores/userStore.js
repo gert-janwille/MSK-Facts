@@ -2,6 +2,7 @@ import {observable, action} from 'mobx';
 import {isEmpty} from 'lodash';
 
 import usersAPI from '../lib/api/users';
+import factAPI from '../lib/api/facts';
 
 const FB = window.FB;
 
@@ -13,12 +14,25 @@ class Store {
 
   @observable savedFacts = []
 
+  @observable userInvites = [];
+
   init = () => {
     FB ? FB.getLoginStatus(response => response.status === `connected` ? this.saveUser(response.authResponse) : console.log(`not logged in`)) : setTimeout(() => this.init(), 500);
   }
 
   constructor() {
     this.init();
+  }
+
+  hasRequest = ({invites}) => {
+    this.userInvites = [];
+
+    invites.forEach(invite => {
+      usersAPI.read(invite)
+        .then(user => {
+          this.userInvites.push(user[0]);
+        });
+    });
   }
 
   @action login = () => {
@@ -31,11 +45,10 @@ class Store {
     usersAPI.read(userID)
       .then(user => {
         this.user = user[0];
-
-        this.savedFacts = this.user.foundFacts;
+        this.hasRequest(user[0]);
+        this.getFacts(this.user.foundFacts);
       });
     this.setFbId(userID);
-    this.getFriends(userID);
   }
 
   @action saveFact = (factId, ac) => {
@@ -51,6 +64,13 @@ class Store {
 
   @action setFbId = id => this.fbid = id;
 
+
+  getFacts = obj => {
+    obj.map(i => {
+      factAPI.read(i)
+        .then(res => this.savedFacts.push(res[0]));
+    });
+  }
 
   signUp = ({userID}) => {
     this.setFbId(userID);
@@ -71,18 +91,8 @@ class Store {
     usersAPI.create(res)
       .then(user => {
         this.user = user;
-        this.getFriends();
         this.savedFacts = this.user.foundFacts;
       });
-  }
-
-  getFriends = id => {
-    const d = id ? id : this.fbid;
-    FB.api(`/${d}/friends`, response => {
-      if (!response.data) return;
-      response.data.forEach(f => this.friends.push(f));
-    });
-    return this.friends;
   }
 
 }

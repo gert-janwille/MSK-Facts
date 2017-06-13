@@ -14,13 +14,14 @@ module.exports = [
 
     handler: (req, res) => {
       const conditions = {};
-      const q = pick(req.query, [`id`, `artwork`]);
+      const q = pick(req.query, [`id`, `artwork`, `tags`]);
 
       //id;
       if (!isEmpty(q.id)) conditions._id = q.id;
       //artwork
       if (!isEmpty(q.artwork)) conditions.artworkMatch = new RegExp(`^${q.artwork.replace(/-/g, ` `)}$`, `i`);
-
+      //Tags;
+      if (!isEmpty(q.tags)) conditions.tags = {$all: q.tags.split(` `)};
 
       Fact.find(isEmpty(conditions) ? `` : conditions)
         .then(piece => {
@@ -43,13 +44,14 @@ module.exports = [
         payload: {
           fact: Joi.string().min(1).required(),
           artworkMatch: Joi.string(),
+          tags: [Joi.string()],
           isActive: Joi.boolean()
         }
       }
     },
 
     handler: (req, res) => {
-      const data = pick(req.payload, [`fact`, `artworkMatch`, `isActive`]);
+      const data = pick(req.payload, [`fact`, `artworkMatch`, `tags`, `isActive`]);
       const fact = new Fact(data);
 
       fact.save()

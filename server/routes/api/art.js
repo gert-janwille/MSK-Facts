@@ -25,7 +25,7 @@ module.exports = [
       //factMatch;
       if (!isEmpty(q.fact)) conditions.factMatch = q.fact;
       //Tags;
-      if (!isEmpty(q.tags)) conditions.tags = {$all: q.tags.split(` `)};
+      if (!isEmpty(q.tags)) conditions.tags = {$in: q.tags.split(` `)};
 
 
       Art.find(isEmpty(conditions) ? `` : conditions)

@@ -40,6 +40,25 @@ export default {
     return fetch(`${url}/${_id}?fact=${fbid}&action=${action}`, {method})
       .then(r => r.json());
 
+  },
+
+  updateTours: (_id, data) => {
+
+    const method = `PUT`;
+
+    return fetch(`${url}/${_id}`, {method, data})
+      .then(r => r.json());
+
+  },
+
+  notification: (_id, data) => {
+
+    const method = `PUT`;
+    if (!_id) return;
+    return fetch(`${url}/${_id}?invite=${data}`, {method})
+      .then(r => r.json())
+      .catch(i => console.log(i));
+
   }
 
 };

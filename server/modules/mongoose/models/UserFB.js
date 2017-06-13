@@ -30,6 +30,14 @@ const schema = new Schema({
     type: [String]
   },
 
+  tours: {
+    type: [String]
+  },
+
+  invites: {
+    type: [String]
+  },
+
   scope: {
     type: String,
     default: Scopes.USER

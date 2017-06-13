@@ -113,14 +113,21 @@ module.exports = [
       validate: {
         params: {
           _id: Joi.string().min(1).required(),
+        },
+
+        options: {
+          abortEarly: false
         }
       }
+
     },
 
     handler: (req, res) => {
       const {_id} = req.params;
       const _fact = req.query.fact;
       const _action = req.query.action;
+      const _invite = req.query.invite;
+
 
       if (_action === `add`) {
         UserFB.findOneAndUpdate({id: _id}, {$push: {foundFacts: [_fact]}}, {new: true})
@@ -141,6 +148,25 @@ module.exports = [
       }
 
 
+      const data = pick(req.payload, [`tour`, `notification`]);
+
+      if (data.tour) {
+        UserFB.findOneAndUpdate({id: _id}, {$push: {tours: [data.tour]}}, {new: true})
+            .then(user => {
+              if (!user) return res(Boom.notFound());
+              return res(user);
+            })
+            .catch(() => res(Boom.badRequest()));
+      }
+
+      if (_invite) {
+        UserFB.findOneAndUpdate({id: _id}, {$push: {invites: [_invite]}}, {new: true})
+            .then(user => {
+              if (!user) return res(Boom.notFound());
+              return res(user);
+            })
+            .catch(() => res(Boom.notFound()));
+      }
 
     }
   }

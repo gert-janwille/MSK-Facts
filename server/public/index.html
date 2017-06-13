@@ -1,4 +1,39 @@
-<!DOCTYPE html> <html lang=en> <head> <meta charset=UTF-8> <title>Hello, Msk-Facts</title> <meta name=viewport content="width=device-width,initial-scale=1"/> <script>WebFontConfig={google:{families:["Roboto"]}},function(e){var o=e.createElement("script"),t=e.scripts[0];o.async=!0,o.src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js",t.parentNode.insertBefore(o,t)}(document)</script> <link href="/css/style.css" rel="stylesheet"></head> <body> <script> window.fbAsyncInit = function() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <title>Hello, Msk-Facts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <script>
+    WebFontConfig = {
+      google: {
+        families: ['Roboto']
+      }
+      /*
+      custom: {
+        families: ['My Font', 'My Other Font:n4,i4,n7'],
+        urls: ['/fonts.css']
+      }
+      */
+    };
+
+    (function(d) {
+      var wf = d.createElement('script'), s = d.scripts[0];
+      wf.async = true;
+      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js';
+      s.parentNode.insertBefore(wf, s);
+    })(document);
+
+  </script>
+
+
+<link href="/css/style.css" rel="stylesheet"></head>
+
+<body>
+  <script>
+      window.fbAsyncInit = function() {
         FB.init({
           appId      : `1906619232953238`,
           cookie     : true,
@@ -6,6 +41,7 @@
           version    : 'v2.8'
         });
         FB.AppEvents.logPageView();
+        window.FB = FB;
       };
 
       (function(d, s, id){
@@ -14,4 +50,21 @@
          js = d.createElement(s); js.id = id;
          js.src = "//connect.facebook.net/en_US/sdk.js";
          fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk')); </script> <div class=react-mount> </div> <script type="text/javascript" src="/js/main.626d745f6e92e9fc8fdd.js"></script></body> </html> 
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
+  <div class='react-mount'>
+
+  </div>
+
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script type="text/javascript">
+     (function(){
+        emailjs.init("user_dYyiJJgDZOGqHm0DanWBu");
+     })();
+  </script>
+
+<script type="text/javascript" src="/js/main.e65dc47660a7939c27db.js"></script></body>
+
+</html>

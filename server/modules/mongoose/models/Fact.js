@@ -11,6 +11,11 @@ const schema = new Schema({
     type: String
   },
 
+  tags: {
+    type: [String],
+    required: true
+  },
+
   isActive: {
     type: Boolean,
     default: true
