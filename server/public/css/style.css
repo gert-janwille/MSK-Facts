@@ -94,6 +94,14 @@ body {
   text-decoration: none;
   color: white;
   font-family: 'brandon_grotesquebold';
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.lesser-button {
+  background-color: white;
+  color: black;
+  box-shadow: 0 0 1rem #888;
 }
 
 .round-button {
@@ -179,6 +187,12 @@ header {
   background-repeat: no-repeat;
   background-size: 35rem;
   background-position: 101% 0%;
+
+  display: -webkit-box;
+
+  display: -ms-flexbox;
+
+  display: flex;
 }
 
 .logo {
@@ -192,6 +206,25 @@ header {
   background-size: contain;
   background-position: bottom;
   background-repeat: no-repeat;
+}
+
+nav {
+  margin-left: 15%;
+  width: 40%;
+  margin-top: 40px;
+  margin-top: 2.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.nav-item {
+  color: black;
+  font-family: 'brandon_grotesquebold';
+  text-decoration: none;
 }
 
 /* SOCIAL */
@@ -442,6 +475,96 @@ header {
           justify-content: center;
 }
 
+.friends-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 32px;
+  margin: 2rem;
+}
+
+.friend-container {
+  width: 288px;
+  width: 18rem;
+  height: 96px;
+  height: 6rem;
+  box-shadow: 0 0 1rem #888;
+  margin: 16px;
+  margin: 1rem;
+  background-color: white;
+
+  display: -webkit-box;
+
+  display: -ms-flexbox;
+
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.friend-pic {
+  width: 80px;
+  width: 5rem;
+  height: 80px;
+  height: 5rem;
+  border-radius: 100%;
+  margin: 16px;
+  margin: 1rem;
+}
+
+.friend-name {
+  font-family: 'brandon_grotesquebold';
+  font-size: 1.3em;
+}
+
+.friends-amount-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: 'brandon_grotesquebold';
+  width: 160px;
+  width: 10rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 64px;
+  margin-top: 4rem;
+  margin-bottom: 32px;
+  margin-bottom: 2rem;
+}
+
+.friends-change-amount {
+  box-shadow: 0 0 .5rem #ed1c24;
+  background-color: #ed1c24;
+  width: 40px;
+  width: 2.5rem;
+  height: 40px;
+  height: 2.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 100%;
+  color: white;
+}
+
 /* BREAKPOINTS */
 
 @media only screen and (max-width: 900px) {
@@ -452,16 +575,14 @@ header {
     background-position: -5% 103%;
   }
 
-  .main-button {
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
-  }
-
   /* HEADER */
 
   header {
     background: #ed1c24;
+  }
+
+  nav {
+    width: 60%;
   }
 
   /* FACT-PAGE */
@@ -497,7 +618,6 @@ header {
     background-size: 90%;
     background-position: -5% 101%;
   }
-
 
   .main-paragraf {
     margin-bottom: 2rem;
@@ -577,6 +697,11 @@ header {
   .popup-screen {
     background-size: 90%;
     background-position: -10% 105%;
+  }
+
+  .friends-container {
+    height: 20rem;
+    overflow-y: scroll;
   }
 }
 
