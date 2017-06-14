@@ -66,7 +66,6 @@ class Store {
 
   getArt = () => {
     const commonTags = this.getMostTags(this.tags);
-    setTimeout(() => console.log(this.tags), 2000);
 
     artAPI.read(isEmpty(commonTags) ? `` : commonTags)
       .then(art => {

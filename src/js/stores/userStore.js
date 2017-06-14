@@ -29,9 +29,7 @@ class Store {
 
     invites.forEach(invite => {
       usersAPI.read(invite)
-        .then(user => {
-          this.userInvites.push(user[0]);
-        });
+        .then(user => this.userInvites.push(user[0]));
     });
   }
 

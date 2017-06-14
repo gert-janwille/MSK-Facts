@@ -4,7 +4,7 @@ import {object, func} from 'prop-types';
 import {inject, observer} from 'mobx-react';
 import {isEmpty} from 'lodash';
 
-const Home = ({fact, getQRdata, scannedFact, createTour, savedFacts, tour, user, friends, requestFriends}) => {
+const Home = ({fact, getQRdata, scannedFact, createTour, savedFacts, tour, user, friends, requestFriends, userInvites}) => {
 
   const handleChange = e => getQRdata(e);
 
@@ -35,10 +35,18 @@ const Home = ({fact, getQRdata, scannedFact, createTour, savedFacts, tour, user,
     });
   };
 
-  const makeInvites = () => {
+  const generateFriends = () => {
     if (!friends) return;
     return friends.map(i => {
       return <li key={Math.random(3)} id={i.id} onClick={handleInvite}>{i.name}</li>;
+    });
+  };
+
+  const hasInvites = () => {
+    if (!userInvites) return;
+    return userInvites.map(invite => {
+      const {email} = invite;
+      return <li key={Math.random(3)}>{email}</li>;
     });
   };
 
@@ -69,8 +77,14 @@ const Home = ({fact, getQRdata, scannedFact, createTour, savedFacts, tour, user,
         </ul>
 
         <ol>
-          {makeInvites()}
+          {generateFriends()}
         </ol>
+
+
+        <div>
+          <p>invites:</p>
+          {hasInvites()}
+        </div>
     </section>
   );
 };
@@ -84,7 +98,8 @@ Home.propTypes = {
   tour: object.isRequired,
   user: object.isRequired,
   friends: object.isRequired,
-  requestFriends: func.isRequired
+  requestFriends: func.isRequired,
+  userInvites: object.isRequired
 };
 
 export default inject(
@@ -97,6 +112,7 @@ export default inject(
     tour: guideStore.tour,
     user: userStore.user,
     friends: guideStore.friends,
-    requestFriends: guideStore.requestFriends
+    requestFriends: guideStore.requestFriends,
+    userInvites: userStore.userInvites
   })
 )(observer(Home));
