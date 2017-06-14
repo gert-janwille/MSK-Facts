@@ -2,8 +2,9 @@ import React from 'react';
 import {object, func} from 'prop-types';
 
 import {inject, observer} from 'mobx-react';
+import {isEmpty} from 'lodash';
 
-const Home = ({fact, getQRdata, scannedFact, createTour, savedFacts, tour, user, userInvites}) => {
+const Home = ({fact, getQRdata, scannedFact, createTour, savedFacts, tour, user, friends, requestFriends}) => {
 
   const handleChange = e => getQRdata(e);
 
@@ -11,7 +12,19 @@ const Home = ({fact, getQRdata, scannedFact, createTour, savedFacts, tour, user,
     e.preventDefault();
     //me, friends, random
     const value = document.querySelector(`input[type = number]`).value;
-    createTour(`random`, savedFacts, user.id, value);
+    createTour(`friends`, savedFacts, user.id, value);
+  };
+
+  const handleInvite = e => {
+    const colorstyle = e.target.style.color;
+
+    if (isEmpty(colorstyle) || colorstyle === `black`) {
+      e.target.style.color = `tomato`;
+    } else {
+      e.target.style.color = `black`;
+    }
+
+    requestFriends(e.target.id, user.id, savedFacts);
   };
 
   const makeTour = () => {
@@ -23,9 +36,9 @@ const Home = ({fact, getQRdata, scannedFact, createTour, savedFacts, tour, user,
   };
 
   const makeInvites = () => {
-    if (!userInvites) return;
-    return userInvites.map(i => {
-      return <li key={Math.random(3)}>{i.email}</li>;
+    if (!friends) return;
+    return friends.map(i => {
+      return <li key={Math.random(3)} id={i.id} onClick={handleInvite}>{i.name}</li>;
     });
   };
 
@@ -70,7 +83,8 @@ Home.propTypes = {
   createTour: func.isRequired,
   tour: object.isRequired,
   user: object.isRequired,
-  userInvites: object.isRequired
+  friends: object.isRequired,
+  requestFriends: func.isRequired
 };
 
 export default inject(
@@ -82,6 +96,7 @@ export default inject(
     createTour: guideStore.createTour,
     tour: guideStore.tour,
     user: userStore.user,
-    userInvites: userStore.userInvites
+    friends: guideStore.friends,
+    requestFriends: guideStore.requestFriends
   })
 )(observer(Home));

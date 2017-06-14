@@ -10,7 +10,7 @@ import sendMail from '../lib/sendMail';
 class Store {
   @observable party = ``
   @observable tour = []
-  @observable friends = {}
+  @observable friends = []
   @observable isLoading = false
 
   id = ``
@@ -38,9 +38,9 @@ class Store {
     }
   }
 
-  @action requestFriends = () => {
-    //TODO:
-    // this.makeNotification(friendId, id, facts);
+  @action requestFriends = (friendId, myId, facts) => {
+    this.selectTour(myId, facts);
+    this.makeNotification(friendId, myId, facts);
   }
 
   selectTour = (id, f) => {
@@ -50,10 +50,10 @@ class Store {
 
     let counter = 0;
 
-    f.forEach((id, ix, arr) => {
+    f.forEach((fact, ix, arr) => {
+      const {_id} = fact;
       counter ++;
-
-      this.getFactfromId(id);
+      this.getFactfromId(_id);
 
       if (counter === arr.length) setTimeout(() => this.getArt(), 1000);
     });
@@ -66,6 +66,7 @@ class Store {
 
   getArt = () => {
     const commonTags = this.getMostTags(this.tags);
+    setTimeout(() => console.log(this.tags), 2000);
 
     artAPI.read(isEmpty(commonTags) ? `` : commonTags)
       .then(art => {
@@ -97,7 +98,9 @@ class Store {
   getFriends = () => {
     window.FB.api(`/me/friends`, response => {
       if (!response.data) return;
-      response.data.forEach(friend => this.friends.push(friend));
+      response.data.forEach(friend => {
+        this.friends.push(friend);
+      });
     });
   }
 
@@ -119,13 +122,15 @@ class Store {
       this.users.splice(amount, 1);
       console.log(temp);
 
-      if (i + 1 >= value) setTimeout(() => temp.map(u => this.makeNotification(u.id, id, facts)), 1000);
+      if (i + 1 >= value) setTimeout(() => temp.map(u => this.makeNotification(u.id, id, facts)), 2000);
     }
   }
 
   makeNotification = (friend, myId, facts) => {
-    const {id} = friend;
-    userAPI.notification(id, myId);
+
+    userAPI.notification(friend, myId)
+      .then(e => console.log(e))
+      .catch(i => console.log(i));
     this.selectTour(myId, facts);
 
     userAPI.read(myId)
