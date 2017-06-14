@@ -1,0 +1,17 @@
+{
+  "name": "Museum voor Schone Kunsten Weetjes",
+  "description": "MSK bezit bezit een prachtig archief aan kusten. Maar wist je dat er veel interessante weetjes zijn over deze collecties? Ontdek ze hier.",
+  "version": "0.0.1",
+  "manifest_version": 1,
+  "icons": {
+    "128": "/assets/app/icon_128.png"
+  },
+  "app": {
+    "urls": [
+      "https://msk-facts.herokuapp.com/"
+    ],
+    "launch": {
+      "web_url": "https://msk-facts.herokuapp.com/"
+    }
+  }
+}

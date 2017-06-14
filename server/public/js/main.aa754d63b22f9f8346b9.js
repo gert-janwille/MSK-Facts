@@ -34530,7 +34530,7 @@ var Store = (_class = function Store() {
         facts[_key] = arguments[_key];
       }
 
-      facts.forEach(function (f) {
+      return facts.forEach(function (f) {
         return _this2.facts.push(new __WEBPACK_IMPORTED_MODULE_2__models_Fact__["a" /* default */](f));
       });
     };
@@ -34578,7 +34578,7 @@ var Store = (_class = function Store() {
     var _this5 = this;
 
     return function (fact) {
-      _this5.fact = fact;
+      return _this5.fact = fact;
     };
   }
 }), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, 'setScannedfact', [__WEBPACK_IMPORTED_MODULE_0_mobx__["action"]], {
@@ -34587,7 +34587,7 @@ var Store = (_class = function Store() {
     var _this6 = this;
 
     return function (fact) {
-      _this6.scannedFact = fact;
+      return _this6.scannedFact = fact;
     };
   }
 })), _class);
@@ -34788,12 +34788,12 @@ var Store = (_class = function Store() {
   };
 
   this.makeNotification = function (friend, myId, facts) {
-
     __WEBPACK_IMPORTED_MODULE_4__lib_api_users__["a" /* default */].notification(friend, myId).then(function (e) {
       return console.log(e);
     }).catch(function (i) {
       return console.log(i);
     });
+
     _this.selectTour(myId, facts);
 
     __WEBPACK_IMPORTED_MODULE_4__lib_api_users__["a" /* default */].read(myId).then(function (user) {
@@ -34994,7 +34994,7 @@ var Store = (_class = function Store() {
   this.hasRequest = function (_ref) {
     var invites = _ref.invites;
 
-    _this.userInvites = [];
+    _this.userInvites.clear();
 
     invites.forEach(function (invite) {
       __WEBPACK_IMPORTED_MODULE_2__lib_api_users__["a" /* default */].read(invite).then(function (user) {
@@ -35094,6 +35094,7 @@ var Store = (_class = function Store() {
         _this3.hasRequest(user[0]);
         _this3.getFacts(_this3.user.foundFacts);
       });
+
       _this3.setFbId(userID);
     };
   }
@@ -52287,4 +52288,4 @@ module.exports = __webpack_require__(109);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.d1c6fbae9c2c0692ec73.js.map
+//# sourceMappingURL=main.aa754d63b22f9f8346b9.js.map

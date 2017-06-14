@@ -25,7 +25,7 @@ class Store {
   }
 
   hasRequest = ({invites}) => {
-    this.userInvites = [];
+    this.userInvites.clear();
 
     invites.forEach(invite => {
       usersAPI.read(invite)
@@ -46,6 +46,7 @@ class Store {
         this.hasRequest(user[0]);
         this.getFacts(this.user.foundFacts);
       });
+      
     this.setFbId(userID);
   }
 

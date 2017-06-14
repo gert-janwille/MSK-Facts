@@ -126,10 +126,10 @@ class Store {
   }
 
   makeNotification = (friend, myId, facts) => {
-
     userAPI.notification(friend, myId)
       .then(e => console.log(e))
       .catch(i => console.log(i));
+
     this.selectTour(myId, facts);
 
     userAPI.read(myId)

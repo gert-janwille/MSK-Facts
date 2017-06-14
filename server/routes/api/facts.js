@@ -44,7 +44,7 @@ module.exports = [
         payload: {
           fact: Joi.string().min(1).required(),
           artworkMatch: Joi.string(),
-          tags: [Joi.string()],
+          tags: Joi.array(),
           isActive: Joi.boolean()
         }
       }

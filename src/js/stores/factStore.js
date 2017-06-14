@@ -24,9 +24,7 @@ class Store {
   }
 
 
-  @action _add = (...facts) => {
-    facts.forEach(f => this.facts.push(new Fact(f)));
-  }
+  @action _add = (...facts) => facts.forEach(f => this.facts.push(new Fact(f)));
 
   @action pickRandom = () => {
     if (this.facts.length <= 0) this.changeFacts();
@@ -56,13 +54,8 @@ class Store {
   }
 
 
-  @action setfact = fact => {
-    this.fact = fact;
-  }
-
-  @action setScannedfact = fact => {
-    this.scannedFact = fact;
-  }
+  @action setfact = fact => this.fact = fact;
+  @action setScannedfact = fact => this.scannedFact = fact;
 
 
   readqrData = id => {
