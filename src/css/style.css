@@ -676,6 +676,10 @@ header {
     bottom: 10rem;
   }
 
+  .fact-page, .mytour-guide {
+    margin-bottom: 15rem;
+  }
+
   .fact-container {
     margin-top: 12rem;
   }
@@ -766,28 +770,10 @@ header {
     margin-top: 7rem;
   }
 
-  /*.top-banner {
-    height: 22rem;
-    margin-top: 5rem;
-
-    &::before {
-      height: 22rem;
-      top: 10rem;
-    }
-  }*/
-
-  /*.favorites-container {
-    width: 90vw;
-    justify-content: center;
-    margin-top: 12rem;
-  }*/
-
   .top-banner {
-    /*height: 22rem;*/
-    margin-top: 0rem;
+    margin-top: 0;
 
     &::before {
-      /*height: 22rem;*/
       top: 5rem;
     }
   }
