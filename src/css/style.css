@@ -52,6 +52,8 @@ input[type=file] {
 .mytour-guide {
   width: 80%;
   margin-left: 20vw;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-button {
@@ -416,7 +418,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 4rem;
+  margin: 4rem 0;
 }
 
 .friend-container {
@@ -616,6 +618,16 @@ header {
     }
   }
 
+  .mytour-guide {
+    width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .banner-text {
     font-size: 1.6rem;
     line-height: 2.8rem;
@@ -643,6 +655,10 @@ header {
 }
 
 @media only screen and (max-width: 720px) {
+
+  .header-tour {
+    margin-top: -5rem;
+  }
 
   header {
     height: 5rem;
@@ -750,13 +766,29 @@ header {
     margin-top: 7rem;
   }
 
-  .top-banner {
+  /*.top-banner {
     height: 22rem;
     margin-top: 5rem;
 
     &::before {
       height: 22rem;
       top: 10rem;
+    }
+  }*/
+
+  /*.favorites-container {
+    width: 90vw;
+    justify-content: center;
+    margin-top: 12rem;
+  }*/
+
+  .top-banner {
+    /*height: 22rem;*/
+    margin-top: 0rem;
+
+    &::before {
+      /*height: 22rem;*/
+      top: 5rem;
     }
   }
 
@@ -772,6 +804,10 @@ header {
     display: none;
     width: 0;
     height: 0;
+  }
+
+  .tour-page {
+    margin-top: 5rem;
   }
 
   .popup-screen {
@@ -807,4 +843,5 @@ header {
     font-size: 1.5rem;
     line-height: 2.5rem;
   }
+
 }

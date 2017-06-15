@@ -109,6 +109,13 @@ input[type=file] {
 .mytour-guide {
   width: 80%;
   margin-left: 20vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .main-button {
@@ -627,8 +634,8 @@ header ::before{
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 64px;
-  margin-top: 4rem;
+  margin: 64px 0;
+  margin: 4rem 0;
 }
 
 .friend-container {
@@ -908,6 +915,25 @@ header ::before{
     top: 10rem;
   }
 
+  .mytour-guide {
+    width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+
   .banner-text {
     font-size: 1.6rem;
     line-height: 2.8rem;
@@ -935,6 +961,10 @@ header ::before{
 }
 
 @media only screen and (max-width: 720px) {
+
+  .header-tour {
+    margin-top: -5rem;
+  }
 
   header {
     height: 5rem
@@ -1061,14 +1091,31 @@ header ::before{
     margin-top: 7rem;
   }
 
-  .top-banner {
+  /*.top-banner {
     height: 22rem;
-    margin-top: 5rem
+    margin-top: 5rem;
+
+    &::before {
+      height: 22rem;
+      top: 10rem;
+    }
+  }*/
+
+  /*.favorites-container {
+    width: 90vw;
+    justify-content: center;
+    margin-top: 12rem;
+  }*/
+
+  .top-banner {
+    /*height: 22rem;*/
+    margin-top: 0rem
   }
 
   .top-banner::before{
-    height: 22rem;
-    top: 10rem;
+
+    /*height: 22rem;*/
+    top: 5rem;
   }
 
   .banner-text {
@@ -1083,6 +1130,10 @@ header ::before{
     display: none;
     width: 0;
     height: 0;
+  }
+
+  .tour-page {
+    margin-top: 5rem;
   }
 
   .popup-screen {
@@ -1118,6 +1169,7 @@ header ::before{
     font-size: 1.5rem;
     line-height: 2.5rem;
   }
+
 }
 
 /*# sourceMappingURL=style.css.map*/

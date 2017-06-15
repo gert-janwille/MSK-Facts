@@ -5,14 +5,13 @@ import {object} from 'prop-types';
 import {inject, observer} from 'mobx-react';
 
 const SideBar = ({user}) => (
-  <header className='mobile'>
+  <header className={window.location.pathname === `/mytour` ? `header-tour mobile` : `mobile`}>
     <div className='logo'>
       <span className='hidden'>Museum voor Schone Kunsten</span>
     </div>
     <div className='sticker'>
       <h1 className='hidden'>Wist je dat...</h1>
     </div>
-
 
 
     <nav className='desktop-nav'>
