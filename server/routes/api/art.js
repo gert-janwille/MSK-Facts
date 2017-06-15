@@ -66,8 +66,7 @@ module.exports = [
           u = omit(u.toJSON(), [`__v`]);
           return res(u);
         })
-        .catch(e => {
-          console.log(e);
+        .catch(() => {
           res(Boom.badRequest());
         });
     }

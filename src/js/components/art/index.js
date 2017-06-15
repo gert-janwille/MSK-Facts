@@ -9,7 +9,7 @@ const Art = ({name}) => {
 
   return (
     <div className='friend-container'>
-      <img src={`assets/images/profile-pics/${name.split(` `).join(`-`)}.jpg`} alt='' className='friend-pic' />
+      <img src={`assets/images/artwork/${name.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ``).split(` `).join(`-`).toLowerCase()}.jpg`} alt='' className='friend-pic' />
       <p className='friend-name'>{name}</p>
     </div>
   );

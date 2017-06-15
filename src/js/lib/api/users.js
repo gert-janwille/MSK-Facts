@@ -52,7 +52,6 @@ export default {
   },
 
   notification: (_id, data) => {
-
     const method = `PUT`;
     return fetch(`${url}/${_id}?invite=${data}`, {method})
       .then(r => r.json());

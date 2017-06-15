@@ -60,7 +60,6 @@ module.exports = [
           return res(u);
         })
         .catch(e => {
-          console.log(e);
           res(e);
         });
     }
