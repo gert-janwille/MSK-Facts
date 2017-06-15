@@ -11,6 +11,7 @@ import ScannedFact from './ScannedFact';
 import Tour from './tour/TourCompagnie';
 import SendInvitation from './tour/SendInvitation';
 import PickRandom from './tour/PickRandom';
+import SelectFriends from './tour/SelectFriends';
 
 import ChooseOption from '../notification/ChooseOption';
 import NotAccepted from '../notification/NotAccepted';
@@ -39,6 +40,8 @@ const Popup = ({setPopUp, popscreen}) => {
       return <NeedMoreFacts />;
     case `scanned`:
       return <ScannedFact />;
+    case `selectFriends`:
+      return <SelectFriends />;
     }
   };
 

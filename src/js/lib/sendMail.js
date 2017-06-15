@@ -5,10 +5,5 @@ export default (firstname, lastname, email) => {
     notes: `Check this out!`,
     to: email,
     username: `${firstname} ${lastname}`
-  })
-    .then(function(response) {
-      console.log(`SUCCESS. status=%d, text=%s`, response.status, response.text);
-    }, function(err) {
-      console.log(`FAILED. error=`, err);
-    });
+  });
 };

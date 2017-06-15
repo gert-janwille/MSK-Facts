@@ -39,15 +39,13 @@ class Store {
   @action increse = () => this.randomPersons < this.maxPersons ? this.randomPersons++ : ``;
   @action decrese = () => this.randomPersons > 0 ? this.randomPersons-- : ``;
 
-
-
   @action createTour = (userCase, facts, id, value) => {
     switch (userCase) {
     case `Eigen rondleiding`:
       this.selectTour(id, facts);
       break;
     case `Met vrienden`:
-      this.getFriends(id, facts);
+      this.selectTour(id, facts);
       break;
     case `Verras mij!`:
       this.pickRandom(id, facts, value);
@@ -140,16 +138,13 @@ class Store {
       const cur = this.users[amount];
       temp.push(cur);
       this.users.splice(amount, 1);
-      console.log(temp);
 
       if (i + 1 >= value) setTimeout(() => temp.map(u => this.makeNotification(u.id, id, facts)), 2000);
     }
   }
 
   makeNotification = (friend, myId, facts) => {
-    userAPI.notification(friend, myId)
-      .then(e => console.log(e))
-      .catch(i => console.log(i));
+    userAPI.notification(friend, myId);
 
     this.selectTour(myId, facts);
 
