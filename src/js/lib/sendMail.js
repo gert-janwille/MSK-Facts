@@ -1,3 +1,4 @@
+/* eslint-disable react/no-undef */
 export default (firstname, lastname, email) => {
   emailjs.send(`gmail`, `mskfact`, {
     name: `MSK`,

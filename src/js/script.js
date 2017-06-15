@@ -34,7 +34,7 @@ import stores from './stores';
 // };
 
 const init = () => {
-  
+
   // window.addEventListener(`resize`, triggerOnScroll);
   // if (window.innerWidth > 575) {
   //   window.addEventListener(`scroll`, onScroll);

@@ -13,6 +13,12 @@ class Store {
   @observable friends = []
   @observable isLoading = false
 
+  @observable screenPop = ``;
+  @observable popupRequired = false;
+
+  @observable randomPersons = 2;
+  @observable maxPersons = 5;
+
   id = ``
 
   tags = [];
@@ -23,16 +29,27 @@ class Store {
   @action setParty = c => this.party = c;
   @action setArt = c => this.tour = c;
 
+  @action setScreen = c => {
+    this.popupRequired = true;
+    this.screenPop = c;
+  };
+
+  @action setPopUp = bool => this.popupRequired = bool;
+
+  @action increse = () => this.randomPersons < this.maxPersons ? this.randomPersons++ : ``;
+  @action decrese = () => this.randomPersons > 0 ? this.randomPersons-- : ``;
+
+
 
   @action createTour = (userCase, facts, id, value) => {
     switch (userCase) {
-    case `me`:
+    case `Eigen rondleiding`:
       this.selectTour(id, facts);
       break;
-    case `friends`:
+    case `Met vrienden`:
       this.getFriends(id, facts);
       break;
-    case `random`:
+    case `Verras mij!`:
       this.pickRandom(id, facts, value);
       break;
     }
@@ -75,6 +92,7 @@ class Store {
   }
 
   pushTour = tour => {
+    this.setArt(tour);
     let data = ``;
 
     tour.forEach((i, id) => {

@@ -11,10 +11,11 @@ class Store {
   @observable facts = []
   @observable shownFacts = []
 
+  @observable searchFact = {};
+
   init = () => {
     factsAPI.read()
       .then(facts => this._add(...facts))
-      .then(this.addLogin())
       .then(this.pickRandom);
   }
 
@@ -36,6 +37,13 @@ class Store {
     this.shownFacts.push(randomPicked);
 
     this.setfact(randomPicked);
+  }
+
+  @action getFact = id => {
+    factsAPI.read(id)
+      .then(fact => {
+        this.searchFact = fact[0];
+      });
   }
 
   @action getQRdata = e => {
@@ -69,8 +77,6 @@ class Store {
 
     this.pickRandom();
   }
-
-  addLogin = () => this.facts.splice(2, 0, new Fact({fact: `login`}));
 
 }
 

@@ -12,16 +12,38 @@ body {
   font-family: 'Trebuchet MS', Helvetica, sans-serif;
   font-size: 1.6em;
   line-height: 1.5em;
-  height: 100vh;
-  background-image: url(../assets/images/illustraties/illu06.png);
-  background-repeat: no-repeat;
-  background-size: 60%;
-  background-position: -5% 105%;
-  background-attachment: fixed;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  font-family: denmarkbold;
+}
+
+em {
+  font-weight: bold;
+}
+
+.react-mount {
+  width: 100vw;
+  height: 100%;
+}
+
+.main-paragraf {
+  font-family: denmarkbold;
+  font-size: 1em;
+  line-height: 1.5em;
+  width: 50%;
+  text-align: center;
+}
+
+.mytour-guide {
+  width: 80%;
+  margin-left: 20vw;
 }
 
 .main-button {
-  background-color: var(--red);
   width: 18.5rem;
   height: 4rem;
   margin-top: 2.5rem;
@@ -31,37 +53,24 @@ body {
   border-radius: 2rem;
   font-size: 1.5rem;
   text-decoration: none;
-  color: white;
   font-family: 'brandon_grotesquebold';
   align-self: center;
 }
 
-.lesser-button {
+.login-name {
+  color: white;
+}
+
+.red-button {
+  background-color: var(--red);
+  color: white;
+  display: flex;
+}
+
+.white-button {
   background-color: white;
   color: black;
-  box-shadow: 0 0 1rem #888;
-}
-
-.round-button {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 100%;
-}
-
-.page {
-  margin-top: 2.5rem;
-}
-
-h1 {
-  font-family: denmarkbold;
-}
-
-.main-paragraf {
-  font-family: denmarkbold;
-  font-size: 1em;
-  line-height: 1.5em;
-  width: 50%;
-  text-align: center;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
 }
 
 /* NOTIFICATIONS */
@@ -99,18 +108,43 @@ h1 {
   top: 1.5rem;
 }
 
+.round-button {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 100%;
+}
+
 /* HEADER */
 
 header {
-  height: 18rem;
-
-  background: url(../assets/images/illustraties/illu05.png), var(--red);
-  background-blend-mode: multiply;
-  background-repeat: no-repeat;
-  background-size: 35rem;
-  background-position: 101% 0%;
-
+  position: fixed;
+  height: 100vh;
+  width: 15vw;
+  background: var(--red);
   display: flex;
+  flex-direction: column;
+  margin-right: 10vw;
+
+  & ::before {
+    content: '';
+    background-color: var(--red);
+    width: 22vw;
+    height: 110vh;
+    position: fixed;
+    top: 0;
+    left: -2rem;
+    transform: rotate(-2deg);
+    z-index: -1;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, .1);
+  }
+}
+
+.header-home {
+  width: 20vw;
+
+  & ::before {
+    width: 30vw;
+  }
 }
 
 .logo {
@@ -123,18 +157,49 @@ header {
   background-repeat: no-repeat;
 }
 
-nav {
-  margin-left: 15%;
-  width: 40%;
-  margin-top: 2.5rem;
+.desktop-nav {
+  margin-top: -5rem;
+}
+
+.nav-home {
+  margin-left: 3vw;
+  margin-top: -15rem;
+}
+
+.nav-list {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
 .nav-item {
-  color: black;
+  margin: 1rem;
+}
+
+.nav-link {
+  color: white;
   font-family: 'brandon_grotesquebold';
   text-decoration: none;
+  margin: 2rem;
+}
+
+.sticker {
+  width: 12rem;
+  height: 12rem;
+  background-image: url(../assets/images/sticker.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 100%;
+
+  box-shadow: 0 0 2rem rgba(0, 0, 0, .5);
+
+  margin-left: 15vw;
+
+}
+
+.sticker-home {
+  width: 18rem;
+  height: 18rem;
+  margin-left: 20vw;
 }
 
 /* SOCIAL */
@@ -146,15 +211,18 @@ nav {
 }
 
 .like {
-  height: 3rem;
+  opacity: .5;
+  cursor: pointer;
+  height: 2.5rem;
   width: 5.5rem;
   background-image: url(../assets/images/heart.svg);
   background-repeat: no-repeat;
 }
 
 .share {
-  height: 3rem;
-  width: 8rem;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 7rem;
   background-image: url(../assets/images/share.svg);
   background-repeat: no-repeat;
   background-position: right;
@@ -171,42 +239,111 @@ nav {
 
 .fact-page {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: space-between;
+  margin-left: 10vw;
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
 }
 
 .fact-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.fact-title {
-  font-size: 3.5em;
-  margin-top: -8rem;
-  margin-bottom: 6rem;
-  color: white;
+  width: 45vw;
 }
 
 .fact-text {
-  width: 37.5rem;
   font-family: denmarkbold;
-  font-size: 1.2em;
-  line-height: 1.8em;
+  color: red;
+  font-size: 2.2rem;
+  line-height: 4rem;
+  margin-bottom: 2rem;
 }
 
-.visit-container {
-  margin-right: -15rem;
-  margin-left: 7.5rem;
-  padding-left: 7.5rem;
-  border-left: solid .3rem black;
+.fact-image {
+  max-width: 12rem;
+  max-height: 17rem;
+  margin-left: 31vw;
+  margin-top: -7rem;
+  margin-bottom: -8rem;
 }
 
-.visit-text {
-  width: 22rem;
-  font-size: .8em;
-  margin-top: .5rem;
+.functional-container {
+  display: flex;
+  justify-content: center;
+  margin: 4rem;
+  width: 100%;
+
+  &::before {
+    content: '';
+    background-image: url(../assets/images/msk01.jpg);
+    background-color: var(--red);
+    background-blend-mode: soft-light;
+    width: 100vw;
+    height: 28rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -2;
+  }
+}
+
+.functional-item {
+  width: 25rem;
+}
+
+.functional-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.functional-text {
+  color: white;
+  font-size: 1.4rem;
+}
+
+.visit {
+  border-left: .3rem solid black;
+  padding-left: 5rem;
+  /*margin-left: 5rem;*/
 }
 
 /* FAVORITES-PAGE */
+
+.top-banner {
+  height: 22rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    content: '';
+    background: url(../assets/images/msk04.jpg), var(--red);
+    background-blend-mode: soft-light;
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+    height: 22rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -2;
+  }
+}
+
+.banner-text {
+  font-family: denmarkbold;
+  color: white;
+  font-size: 1.8rem;
+  line-height: 3rem;
+  width: 40vw;
+  text-align: center;
+}
 
 .favorites-page {
   display: flex;
@@ -214,48 +351,36 @@ nav {
   align-items: center;
 }
 
-.back {
-  position: absolute;
-  left: 3rem;
-  top: 21rem;
-}
-
-.back-button {
-  display: block;
-  box-shadow: 0 0 1rem #888;
-  background-image: url(../assets/images/back-arrow.svg);
-  background-size: 35%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: white;
-}
-
 .favorites-container {
   margin-top: 5rem;
-  width: 60%;
-  column-width: 15rem;
-  column-gap: 5rem;
+  width: 60vw;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .favorite-container {
-  margin: 2.5rem 0;
+  margin: 3rem;
   display: flex;
   flex-direction: column;
   break-inside: avoid;
+  break-after: avoid;
+  break-before: avoid;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, .5);
+  padding: 2rem;
+  width: 22rem;
 }
 
 .favorite-image {
   max-width: 15rem;
-  margin-bottom: .5rem;
+  margin-bottom: 1.5rem;
   max-height: 15rem;
   align-self: center;
 }
 
 .favorite-title {
-  background-color: var(--red);
+  color: var(--red);
   padding-top: .6rem;
   padding-left: 1rem;
-  color: white;
 }
 
 .favorite-text {
@@ -263,6 +388,50 @@ nav {
   font-size: .8em;
   margin-top: 1rem;
   margin-bottom: -2rem;
+}
+
+/* TOERS */
+
+.tour-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rondleiding-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.friend-container {
+  width: 25rem;
+  height: 6rem;
+  box-shadow: 0 0 1rem #888;
+  margin: 1rem;
+  background-color: white;
+
+  display: flex;
+  align-items: center;
+}
+
+.friend-pic {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 100%;
+  margin: 1rem;
+}
+
+.friend-name {
+  font-family: 'brandon_grotesquebold';
+  font-size: 1em;
+  width: 7rem;
+}
+
+.tour-done {
+  width: 30vw;
+  margin-left: 10rem;
 }
 
 /* POPUP SCREEN */
@@ -308,35 +477,12 @@ nav {
   justify-content: center;
 }
 
-.friends-container {
+.popup-friends-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin: 2rem;
-}
-
-.friend-container {
-  width: 18rem;
-  height: 6rem;
-  box-shadow: 0 0 1rem #888;
-  margin: 1rem;
-  background-color: white;
-
-  display: flex;
-  align-items: center;
-}
-
-.friend-pic {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 100%;
-  margin: 1rem;
-}
-
-.friend-name {
-  font-family: 'brandon_grotesquebold';
-  font-size: 1.3em;
 }
 
 .friends-amount-container {
@@ -363,121 +509,239 @@ nav {
 
 /* BREAKPOINTS */
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1014px) {
 
   body {
-    font-size: 1.4em;
-    background-size: 75%;
-    background-position: -5% 103%;
+    flex-direction: column;
   }
-
-  /* HEADER */
 
   header {
-    background: var(--red);
+    height: 10rem;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: -2.5rem;
+
+    & ::before {
+      width: 110vw;
+      height: 12rem;
+      position: absolute;
+      transform: rotate(-1deg);
+    }
   }
 
-  nav {
-    width: 60%;
+  .logo {
+    order: 3;
   }
 
-  /* FACT-PAGE */
+  .desktop-nav {
+    order: 2;
+    margin-top: 3rem;
+  }
+
+  .nav-home {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .nav-list {
+    flex-direction: row;
+  }
+
+  .sticker {
+    order: 1;
+
+    width: 11rem;
+    height: 11rem;
+
+    margin-left: 8rem;
+    margin-top: 8rem;
+
+  }
+
+  .fact-container {
+    width: 60vw;
+    margin-top: 5rem;
+  }
+
+  .fact-image {
+    max-width: 12rem;
+    max-height: 17rem;
+    margin-left: 50vw;
+    margin-top: -10rem;
+    margin-bottom: -8rem;
+  }
+
+  .functional-container {
+    display: none;
+    height: 0;
+  }
 
   .fact-page {
-    align-items: center;
+    height: 100%;
+  }
+
+  .favorites-container {
+    width: 90vw;
     justify-content: center;
   }
 
-  .fact-text {
-    width: 60vw;
+  .top-banner {
+    height: 22rem;
+
+    &::before {
+      height: 22rem;
+      top: 10rem;
+    }
   }
 
-  .visit-container {
-    display: none;
+  .banner-text {
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    width: 50vw;
   }
-
-  /* POPUP SCREEN */
 
   .popup-screen {
     background-size: 80%;
   }
+
+  .popup-friends-container {
+    height: 20rem;
+    overflow-y: scroll;
+  }
+
 }
 
-@media only screen and (max-width: 575px) {
+@media only screen and (min-width: 720px) {
 
-  body {
-    font-size: 1.1em;
-    background-size: 90%;
-    background-position: -5% 101%;
+  .mobile-nav {
+    display: none;
+    width: 0;
+    height: 0;
   }
+}
 
-  .main-paragraf {
-    margin-bottom: 2rem;
-  }
+@media only screen and (max-width: 720px) {
 
-  .round-button {
-    width: 4rem;
-    height: 4rem;
-  }
+  header {
+    height: 5rem;
 
-  /* NOTIFICATIONS */
-
-  .notifications-amount {
-    width: 1.8rem;
-    height: 1.8rem;
-    font-size: .6em;
-
-    left: 2.75rem;
-    top: 1.25rem;
-  }
-
-  /* SOCIAL */
-
-  .like {
-    height: 2rem;
-    width: 4rem;
-  }
-
-  .share {
-    height: 2rem;
-    width: 7rem;
-    margin-left: 2rem;
-  }
-
-  /* FACT-PAGE */
-
-  .fact-text {
-    width: 70vw;
-  }
-
-  /* FAVORITE_PAGE */
-
-  .mobile {
-    height: 7.5rem;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    & .logo {
-      width: 5rem;
-      height: 4.5rem;
-      margin-right: 2.5rem;
-      background-image: url(../assets/images/MSKGENT_LOGO_03.png);
+    & ::before {
+      height: 10rem;
     }
   }
 
-  .back {
-    top: 1.75rem;
+  .sticker {
+    margin-top: 5rem;
   }
 
-  .favorite-text {
-    font-size: 1em;
+  .notifications {
+    bottom: 10rem;
   }
 
-  /* POPUP SCREEN */
+  .fact-image {
+    max-width: 26rem;
+    max-height: 28rem;
+    margin-left: 30vw;
+    margin-top: -20rem;
+    opacity: .2;
+  }
 
-  .close-popup-screen {
-    margin-bottom: -2rem;
+  .fact-text {
+    padding-top: 3rem;
+    font-size: 2rem;
+  }
+
+  .desktop-nav {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .mobile-nav {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+  }
+
+  .mobile-nav-container {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mobile-nav-link {
+    width: 33.3vw;
+    height: 6.5rem;
+    box-shadow: 0 0 1rem #888;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: #888;
+    text-decoration: none;
+  }
+
+  .scan-button {
+    width: 6.5rem;
+    height: 6.5rem;
+    border-radius: 100%;
+    box-shadow: 0 0 1rem #888;
+    background-color: white;
+    position: relative;
+    top: 2rem;
+    background-image: url(../assets/images/scan.svg);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .favorite-button {
+    background-image: url(../assets/images/heart.svg);
+    background-size: 20%;
+    background-repeat: no-repeat;
+    background-position: center 30%;
+  }
+
+  .home-button {
+    background-image: url(../assets/images/home.svg);
+    background-size: 20%;
+    background-repeat: no-repeat;
+    background-position: center 30%;
+  }
+
+  .tour-button {
+    background-image: url(../assets/images/rondleiding.svg);
+    background-size: 20%;
+    background-repeat: no-repeat;
+    background-position: center 30%;
+  }
+
+  .top-banner {
+    height: 24rem;
+
+    &::before {
+      height: 24rem;
+      top: 8rem;
+    }
+  }
+
+  .banner-text {
+    font-size: 1.4rem;
+    line-height: 2.6rem;
+    margin-top: 12rem;
+    margin-left: 5rem;
+    width: 80vw;
+  }
+
+  .tour-done {
+    display: none;
+    width: 0;
+    height: 0;
   }
 
   .popup-screen {
@@ -485,8 +749,32 @@ nav {
     background-position: -10% 105%;
   }
 
-  .friends-container {
-    height: 20rem;
-    overflow-y: scroll;
+}
+
+@media only screen and (max-width: 560px) {
+
+  body {
+    font-size: 1.3rem;
+  }
+
+  .logo {
+    width: 5rem;
+    height: 7rem;
+    background-image: url(../assets/images/MSKGENT_LOGO_03.png);
+  }
+
+  .mobile-nav-link {
+    height: 5rem;
+  }
+
+  .scan-button {
+    top: 1rem;
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .fact-text {
+    font-size: 1.5rem;
+    line-height: 2.5rem;
   }
 }

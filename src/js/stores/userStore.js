@@ -24,6 +24,7 @@ class Store {
     this.init();
   }
 
+
   hasRequest = ({invites}) => {
     this.userInvites.clear();
 
@@ -37,7 +38,18 @@ class Store {
     FB.login(response => {
       response.status === `connected` ? this.signUp(response.authResponse) : console.error(`something went wrong`);
     }, {scope: `public_profile, email, user_friends`});
+    this.loginRequired = false;
   }
+
+  @action share = () => {
+    FB.ui({
+      method: `share`,
+      href: `https://msk-facts.herokuapp.com`,
+    }, function(response) {
+      console.log(response);
+    });
+  }
+
 
   @action saveUser = ({userID}) => {
     usersAPI.read(userID)
@@ -46,7 +58,7 @@ class Store {
         this.hasRequest(user[0]);
         this.getFacts(this.user.foundFacts);
       });
-      
+
     this.setFbId(userID);
   }
 
@@ -54,11 +66,18 @@ class Store {
     if (!this.fbid) return;
     if (!factId) return;
 
+    this.savedFacts.map(f => {
+      if (f._id === factId)  ac = `remove`;
+    });
+
     const contain = this.savedFacts.includes(factId);
     if (contain && ac === `add`) return;
 
     usersAPI.update(this.fbid, factId, ac)
-      .then(r => this.savedFacts = r.foundFacts);
+      .then(() => {
+        usersAPI.read(this.fbid)
+          .then(i => this.savedFacts = i.foundFacts);
+      });
   }
 
   @action setFbId = id => this.fbid = id;

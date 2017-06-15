@@ -1,118 +1,48 @@
 import React from 'react';
-import {object, func} from 'prop-types';
+import {func} from 'prop-types';
 
 import {inject, observer} from 'mobx-react';
-import {isEmpty} from 'lodash';
+// import {isEmpty} from 'lodash';
 
-const Home = ({fact, getQRdata, scannedFact, createTour, savedFacts, tour, user, friends, requestFriends, userInvites}) => {
+import Fact from '../components/facts/Fact';
 
-  const handleChange = e => getQRdata(e);
+const Home = ({pickRandom}) => {
 
-  const handleClickTour = e => {
+  const handleClickFact = e => {
     e.preventDefault();
-    //me, friends, random
-    const value = document.querySelector(`input[type = number]`).value;
-    createTour(`friends`, savedFacts, user.id, value);
-  };
-
-  const handleInvite = e => {
-    const colorstyle = e.target.style.color;
-
-    if (isEmpty(colorstyle) || colorstyle === `black`) {
-      e.target.style.color = `tomato`;
-    } else {
-      e.target.style.color = `black`;
-    }
-
-    requestFriends(e.target.id, user.id, savedFacts);
-  };
-
-  const makeTour = () => {
-    if (!tour) return;
-
-    return tour.map(i => {
-      return <li key={Math.random(3)}>{i.name}</li>;
-    });
-  };
-
-  const generateFriends = () => {
-    if (!friends) return;
-    return friends.map(i => {
-      return <li key={Math.random(3)} id={i.id} onClick={handleInvite}>{i.name}</li>;
-    });
-  };
-
-  const hasInvites = () => {
-    if (!userInvites) return;
-    return userInvites.map(invite => {
-      const {email} = invite;
-      return <li key={Math.random(3)}>{email}</li>;
-    });
+    pickRandom();
   };
 
   return (
-    <section>
-      <p>{fact.fact}</p>
-      <br />
-      <form encType='multipart/form-data' method='post'>
-        <input type='file' accept='image/*' onChange={handleChange} />
-      </form>
+    <section className='fact-page'>
 
-      <br />
+      <section className='fact'>
+        <Fact />
+        <a href='#' className='main-button red-button' onClick={handleClickFact}>Nog meer weetjes?</a>
+      </section>
 
-      <h1>Scanned Fact:</h1>
-      <p>{scannedFact ? scannedFact.fact : ``}</p>
-
-      <br />
-
-      <button type='button' name='next' onClick={handleClickTour}>Friends Tour</button>
-
-    <form action='post' onSubmit={handleClickTour}>
-        <input type='number' />
-        <input type='submit' />
-      </form>
-
-        <ul>
-          {makeTour()}
-        </ul>
-
-        <ol>
-          {generateFriends()}
-        </ol>
-
-
-        <div>
-          <p>invites:</p>
-          {hasInvites()}
+      <section className='functional-container'>
+        <div className='functional-item tour'>
+          <h1 className='functional-title'>Maak jouw eigen rondleiding.</h1>
+          <p className='functional-text'>Maak een eigen gepersonaliseerde rondleiding met jouw <em>favoriete weetjes</em></p>
+          <a href='' className='main-button white-button'>Stel rondleiding samen</a>
         </div>
+        <div className='functional-item visit'>
+          <h1 className='functional-title'>Meer weetjes? Bezoek het MSK.</h1>
+          <p className='functional-text'>500 jaar kunst in 40 zalen.</p>
+          <a href='https://www.mskgent.be' className='main-button white-button'>Koop tickets</a>
+        </div>
+      </section>
     </section>
   );
 };
 
 Home.propTypes = {
-  fact: object.isRequired,
-  scannedFact: object.isRequired,
-  savedFacts: object.isRequired,
-  getQRdata: func.isRequired,
-  createTour: func.isRequired,
-  tour: object.isRequired,
-  user: object.isRequired,
-  friends: object.isRequired,
-  requestFriends: func.isRequired,
-  userInvites: object.isRequired
+  pickRandom: func.isRequired
 };
 
 export default inject(
-  ({factStore, guideStore, userStore}) => ({
-    fact: factStore.fact,
-    getQRdata: factStore.getQRdata,
-    scannedFact: factStore.scannedFact,
-    savedFacts: userStore.savedFacts,
-    createTour: guideStore.createTour,
-    tour: guideStore.tour,
-    user: userStore.user,
-    friends: guideStore.friends,
-    requestFriends: guideStore.requestFriends,
-    userInvites: userStore.userInvites
+  ({factStore}) => ({
+    pickRandom: factStore.pickRandom
   })
 )(observer(Home));
