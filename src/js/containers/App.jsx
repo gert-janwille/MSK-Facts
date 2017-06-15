@@ -17,8 +17,7 @@ import Popup from '../components/popup/';
 
 import Notification from '../components/notification/';
 
-const App = ({popupRequired, screenPop}) => {
-
+const App = ({popupRequired, screenPop, hasInvites}) => {
   return (
     <section>
 
@@ -35,7 +34,8 @@ const App = ({popupRequired, screenPop}) => {
           <Route path='/fact/:id' component={Fact} />
         </main>
 
-        <Notification />
+        {hasInvites ? <Notification /> : ``}
+
         <MobileNav />
 
     </section>
@@ -44,12 +44,14 @@ const App = ({popupRequired, screenPop}) => {
 
 App.propTypes = {
   popupRequired: bool.isRequired,
-  screenPop: string.isRequired
+  screenPop: string.isRequired,
+  hasInvites: bool.isRequired
 };
 
 export default inject(
-  ({guideStore}) => ({
+  ({guideStore, userStore}) => ({
     popupRequired: guideStore.popupRequired,
-    screenPop: guideStore.screenPop
+    screenPop: guideStore.screenPop,
+    hasInvites: userStore.hasInvites
   })
 )(observer(App));

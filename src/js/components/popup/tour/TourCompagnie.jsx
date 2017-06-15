@@ -3,13 +3,14 @@ import {Link} from 'react-router-dom';
 import {inject, observer} from 'mobx-react';
 import {func, object} from 'prop-types';
 
-const TourCompagnie = ({createTour, savedFacts, user, setScreen}) => {
+const TourCompagnie = ({createTour, savedFacts, user, setScreen, setPopUp}) => {
 
   const handleClickComp = e => {
     e.preventDefault();
     switch (e.target.innerHTML) {
     case `Eigen rondleiding`:
       createTour(e.target.innerHTML, savedFacts, user.id);
+      setPopUp(false);
       break;
     case `Met vrienden`:
       setScreen(`sentInvite`);
@@ -36,7 +37,8 @@ TourCompagnie.propTypes = {
   createTour: func.isRequired,
   user: object.isRequired,
   savedFacts: object.isRequired,
-  setScreen: func.isRequired
+  setScreen: func.isRequired,
+  setPopUp: func.isRequired
 };
 
 export default inject(
@@ -44,6 +46,7 @@ export default inject(
     createTour: guideStore.createTour,
     user: userStore.user,
     savedFacts: userStore.savedFacts,
-    setScreen: guideStore.setScreen
+    setScreen: guideStore.setScreen,
+    setPopUp: guideStore.setPopUp
   })
 )(observer(TourCompagnie));

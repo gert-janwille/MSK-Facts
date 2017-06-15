@@ -13,7 +13,8 @@ export default {
 
     const selectOne = qs ? `?tags=${qs}` : ``;
     return fetch(`${url}${selectOne}`)
-      .then(r => r.json());
+      .then(r => r.json())
+      .catch(er => er.json());
   }
 
 };

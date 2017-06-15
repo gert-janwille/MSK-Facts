@@ -6,7 +6,9 @@ import factsAPI from '../lib/api/facts';
 
 class Store {
   @observable fact = {}
-  @observable scannedFact = {}
+  @observable scannedFact = {
+    fact: `loading the fact`
+  }
 
   @observable facts = []
   @observable shownFacts = []

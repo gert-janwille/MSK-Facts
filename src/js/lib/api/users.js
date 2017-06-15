@@ -57,6 +57,12 @@ export default {
     return fetch(`${url}/${_id}?invite=${data}`, {method})
       .then(r => r.json());
 
+  },
+
+  removeNotification: _id => {
+    const method = `DELETE`;
+    return fetch(`${url}/${_id}?invite=true`, {method})
+      .then(r => r.json());
   }
 
 };

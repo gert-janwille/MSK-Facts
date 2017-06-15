@@ -5,6 +5,8 @@ import {inject, observer} from 'mobx-react';
 import {func, string} from 'prop-types';
 
 import LoginRequired from './LoginRequired';
+import NeedMoreFacts from './NeedMoreFacts';
+import ScannedFact from './ScannedFact';
 
 import Tour from './tour/TourCompagnie';
 import SendInvitation from './tour/SendInvitation';
@@ -33,6 +35,10 @@ const Popup = ({setPopUp, popscreen}) => {
       return <ChooseOption />;
     case `notAccept`:
       return <NotAccepted />;
+    case `needmoreFacts`:
+      return <NeedMoreFacts />;
+    case `scanned`:
+      return <ScannedFact />;
     }
   };
 

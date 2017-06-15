@@ -93,13 +93,23 @@ module.exports = [
 
     handler: (req, res) => {
       const {_id} = req.params;
+      const _invite = req.query.invite;
 
-      UserFB.findOneAndRemove({id: _id})
-        .then(user => {
-          if (!user) return res(Boom.notFound());
-          return res({statuscode: 200});
-        })
-        .catch(() => res(Boom.badRequest()));
+      if (_invite) {
+        UserFB.findOneAndUpdate({id: _id}, {$set: {invites: []}}, {new: true})
+          .then(user => {
+            if (!user) return res(Boom.notFound());
+            return res(user);
+          })
+          .catch(() => res(Boom.badRequest()));
+      } else {
+        UserFB.findOneAndRemove({id: _id})
+          .then(user => {
+            if (!user) return res(Boom.notFound());
+            return res({statuscode: 200});
+          })
+          .catch(() => res(Boom.badRequest()));
+      }
     }
   },
 

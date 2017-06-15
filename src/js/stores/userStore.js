@@ -1,4 +1,4 @@
-import {observable, action} from 'mobx';
+import {observable, action, computed} from 'mobx';
 import {isEmpty} from 'lodash';
 
 import usersAPI from '../lib/api/users';
@@ -24,6 +24,9 @@ class Store {
     this.init();
   }
 
+  @computed get hasInvites() {
+    return !isEmpty(this.user.invites);
+  }
 
   hasRequest = ({invites}) => {
     this.userInvites.clear();
@@ -78,6 +81,11 @@ class Store {
         usersAPI.read(this.fbid)
           .then(i => this.savedFacts = i.foundFacts);
       });
+  }
+
+  @action removeNotification = () => {
+    usersAPI.removeNotification(this.fbid)
+      .then(user => console.log(user));
   }
 
   @action setFbId = id => this.fbid = id;

@@ -1,14 +1,18 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {inject, observer} from 'mobx-react';
-import {func} from 'prop-types';
+import {inject, observer, PropTypes} from 'mobx-react';
+import {func, string} from 'prop-types';
 
-const Notification = ({setScreen, setPopUp}) => {
+const Notification = ({setScreen, setPopUp, savedFacts, fbid, createTour, removeNotification}) => {
 
-  const handleClickAccept = () => setPopUp(false);
+  const handleClickAccept = () => {
+    setPopUp(false);
+    createTour(`Eigen rondleiding`, savedFacts, fbid);
+  };
 
   const handleClickDeny = e => {
     e.preventDefault();
+    removeNotification();
     setScreen(`notAccept`);
   };
 
@@ -23,12 +27,20 @@ const Notification = ({setScreen, setPopUp}) => {
 
 Notification.propTypes = {
   setScreen: func.isRequired,
-  setPopUp: func.isRequired
+  setPopUp: func.isRequired,
+  createTour: func.isRequired,
+  savedFacts: PropTypes.observableArray.isRequired,
+  fbid: string.isRequired,
+  removeNotification: func.isRequired
 };
 
 export default inject(
-  ({guideStore}) => ({
+  ({guideStore, userStore}) => ({
     setScreen: guideStore.setScreen,
-    setPopUp: guideStore.setPopUp
+    setPopUp: guideStore.setPopUp,
+    createTour: guideStore.createTour,
+    savedFacts: userStore.savedFacts,
+    fbid: userStore.fbid,
+    removeNotification: userStore.removeNotification
   })
 )(observer(Notification));

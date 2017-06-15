@@ -83,7 +83,10 @@ class Store {
 
   getArt = () => {
     const commonTags = this.getMostTags(this.tags);
-
+    if (isEmpty(commonTags)) {
+      this.setScreen(`needmoreFacts`);
+      return;
+    }
     artAPI.read(isEmpty(commonTags) ? `` : commonTags)
       .then(art => {
         this.setArt(art);
