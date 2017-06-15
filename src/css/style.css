@@ -70,6 +70,9 @@ input[type=file] {
 
 .login-name {
   color: white;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
 }
 
 .red-button {
@@ -142,7 +145,7 @@ header {
     width: 22vw;
     height: 110vh;
     position: fixed;
-    top: 0;
+    top: -2rem;
     left: -2rem;
     transform: rotate(-2deg);
     z-index: -1;
@@ -535,7 +538,7 @@ header {
 
     & ::before {
       width: 110vw;
-      height: 12rem;
+      height: 14rem;
       position: absolute;
       transform: rotate(-1deg);
     }
@@ -570,9 +573,14 @@ header {
 
   }
 
+  .login-name {
+    top: 1rem;
+    left: 4rem;
+  }
+
   .fact-container {
     width: 60vw;
-    margin-top: 5rem;
+    margin-top: 20rem;
   }
 
   .fact-image {
@@ -595,10 +603,12 @@ header {
   .favorites-container {
     width: 90vw;
     justify-content: center;
+    margin-top: 12rem;
   }
 
   .top-banner {
     height: 22rem;
+    margin-top: 12rem;
 
     &::before {
       height: 22rem;
@@ -638,7 +648,7 @@ header {
     height: 5rem;
 
     & ::before {
-      height: 10rem;
+      height: 12rem;
     }
   }
 
@@ -648,6 +658,10 @@ header {
 
   .notifications {
     bottom: 10rem;
+  }
+
+  .fact-container {
+    margin-top: 12rem;
   }
 
   .fact-image {
@@ -732,12 +746,17 @@ header {
     background-position: center 30%;
   }
 
+  .favorites-container {
+    margin-top: 7rem;
+  }
+
   .top-banner {
-    height: 24rem;
+    height: 22rem;
+    margin-top: 5rem;
 
     &::before {
-      height: 24rem;
-      top: 8rem;
+      height: 22rem;
+      top: 10rem;
     }
   }
 
