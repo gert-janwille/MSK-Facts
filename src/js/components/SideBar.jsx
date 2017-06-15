@@ -6,8 +6,6 @@ import {inject, observer} from 'mobx-react';
 
 const SideBar = ({user}) => (
   <header className='mobile'>
-    <h1 className='login-name'>Hello, {user ? user.firstName : ``} {user ? user.lastName : ``}</h1>
-
     <div className='logo'>
       <span className='hidden'>Museum voor Schone Kunsten</span>
     </div>
@@ -24,6 +22,9 @@ const SideBar = ({user}) => (
         <li className='nav-item'><Link to={`/mytour`} className='nav-link'>Jouw Rondleiding</Link></li>
       </ul>
     </nav>
+
+    <h1 className='login-name'>Hello, {user ? user.firstName : ``} {user ? user.lastName : ``}</h1>
+
 
   </header>
 

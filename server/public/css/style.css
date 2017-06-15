@@ -138,6 +138,11 @@ input[type=file] {
 
 .login-name {
   color: white;
+  position: absolute;
+  bottom: 16px;
+  bottom: 1rem;
+  left: 16px;
+  left: 1rem;
 }
 
 .red-button {
@@ -232,7 +237,8 @@ header ::before{
   width: 22vw;
   height: 110vh;
   position: fixed;
-  top: 0;
+  top: -32px;
+  top: -2rem;
   left: -32px;
   left: -2rem;
   -webkit-transform: rotate(-2deg);
@@ -813,7 +819,7 @@ header ::before{
 
   header ::before{
     width: 110vw;
-    height: 12rem;
+    height: 14rem;
     position: absolute;
     -webkit-transform: rotate(-1deg);
             transform: rotate(-1deg);
@@ -857,9 +863,14 @@ header ::before{
 
   }
 
+  .login-name {
+    top: 1rem;
+    left: 4rem;
+  }
+
   .fact-container {
     width: 60vw;
-    margin-top: 5rem;
+    margin-top: 20rem;
   }
 
   .fact-image {
@@ -884,10 +895,12 @@ header ::before{
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    margin-top: 12rem;
   }
 
   .top-banner {
-    height: 22rem
+    height: 22rem;
+    margin-top: 12rem
   }
 
   .top-banner::before{
@@ -928,7 +941,7 @@ header ::before{
   }
 
   header ::before{
-    height: 10rem;
+    height: 12rem;
   }
 
   .sticker {
@@ -937,6 +950,10 @@ header ::before{
 
   .notifications {
     bottom: 10rem;
+  }
+
+  .fact-container {
+    margin-top: 12rem;
   }
 
   .fact-image {
@@ -1040,13 +1057,18 @@ header ::before{
     background-position: center 30%;
   }
 
+  .favorites-container {
+    margin-top: 7rem;
+  }
+
   .top-banner {
-    height: 24rem
+    height: 22rem;
+    margin-top: 5rem
   }
 
   .top-banner::before{
-    height: 24rem;
-    top: 8rem;
+    height: 22rem;
+    top: 10rem;
   }
 
   .banner-text {
