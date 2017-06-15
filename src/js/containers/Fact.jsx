@@ -5,9 +5,7 @@ import {inject, observer} from 'mobx-react';
 
 
 const Favorites = ({getFact}) => {
-  // const {id} = props.match.params;
   getFact(`5941387e75826a14756c48e6`);
-  // console.log(searchFact);
   return (
     <section className='fact-page'>
       <h1>Fact</h1>

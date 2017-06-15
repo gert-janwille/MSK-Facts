@@ -71,8 +71,7 @@ module.exports = [
           u = omit(u.toJSON(), [`__v`]);
           return res(u);
         })
-        .catch(er => {
-          console.log(er);
+        .catch(() => {
           res(Boom.badRequest(`cannot save user`));
         });
     }

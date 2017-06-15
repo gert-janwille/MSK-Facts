@@ -84,8 +84,7 @@ class Store {
   }
 
   @action removeNotification = () => {
-    usersAPI.removeNotification(this.fbid)
-      .then(user => console.log(user));
+    usersAPI.removeNotification(this.fbid);
   }
 
   @action setFbId = id => this.fbid = id;
