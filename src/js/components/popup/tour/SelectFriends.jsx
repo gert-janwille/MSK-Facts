@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {inject, observer, PropTypes} from 'mobx-react';
 
 import {func, object} from 'prop-types';

@@ -422,7 +422,7 @@ header {
 }
 
 .friend-container {
-  width: 25rem;
+  width: 35rem;
   height: 6rem;
   box-shadow: 0 0 1rem #888;
   margin: 1rem;
@@ -442,7 +442,7 @@ header {
 .friend-name {
   font-family: 'brandon_grotesquebold';
   font-size: 1em;
-  width: 7rem;
+  width: 100%;
 }
 
 .tour-done {
@@ -622,6 +622,7 @@ header {
     width: 100vw;
     margin-left: 0;
     margin-right: 0;
+    margin-bottom: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
