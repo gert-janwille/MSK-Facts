@@ -22,7 +22,7 @@ const SideBar = ({user}) => (
       </ul>
     </nav>
 
-    <h1 className='login-name'>Hello, {user ? user.firstName : ``} {user ? user.lastName : ``}</h1>
+    {user.firstName ? <h1 className='login-name'>Hello, {user ? user.firstName : ``} {user ? user.lastName : ``}</h1> : ``}
 
 
   </header>
